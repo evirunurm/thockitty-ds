@@ -3,8 +3,6 @@ name: Publish
 on:
   push:
     branches: [main]
-    paths:
-      - tokens.json
 
 permissions:
   contents: write
