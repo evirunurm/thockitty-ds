@@ -19,10 +19,10 @@ npm install react react-dom
 ## Usage
 
 ```tsx
-import { Button } from "thockitty-ds";
+import { Button } from 'thockitty-ds'
 
 function App() {
-  return <Button onPress={() => console.log("pressed")}>Click me</Button>;
+	return <Button onPress={() => console.log('pressed')}>Click me</Button>
 }
 ```
 
@@ -32,13 +32,13 @@ function App() {
 
 An accessible button built on `@react-aria/button`. Supports `forwardRef`, `onPress`, `isDisabled`, and all standard [AriaButtonProps](https://react-spectrum.adobe.com/react-aria/useButton.html).
 
-| Prop          | Type                      | Description                  |
-| ------------- | ------------------------- | ---------------------------- |
-| `onPress`     | `(e: PressEvent) => void` | Called when the button is pressed |
-| `isDisabled`  | `boolean`                 | Whether the button is disabled |
-| `className`   | `string`                  | CSS class name               |
-| `style`       | `CSSProperties`           | Inline styles                |
-| `children`    | `ReactNode`               | Button content               |
+| Prop         | Type                      | Description                       |
+| ------------ | ------------------------- | --------------------------------- |
+| `onPress`    | `(e: PressEvent) => void` | Called when the button is pressed |
+| `isDisabled` | `boolean`                 | Whether the button is disabled    |
+| `className`  | `string`                  | CSS class name                    |
+| `style`      | `CSSProperties`           | Inline styles                     |
+| `children`   | `ReactNode`               | Button content                    |
 
 ## Development
 

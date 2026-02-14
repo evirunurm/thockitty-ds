@@ -1,57 +1,59 @@
 {
-  "name": "@evirunurm/thockitty-ds",
-  "version": "0.1.2",
-  "description": "Thockitty Design System",
-  "main": "dist/index.cjs",
-  "module": "dist/index.mjs",
-  "types": "dist/index.d.ts",
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.cjs"
-    }
-  },
-  "scripts": {
-    "build": "tsup src/index.ts --format esm,cjs --dts --clean",
-    "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
-  },
-  "peerDependencies": {
-    "react": "^18.0.0 || ^19.0.0",
-    "react-dom": "^18.0.0 || ^19.0.0"
-  },
-  "files": [
-    "dist"
-  ],
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/evirunurm/thockitty-ds.git"
-  },
-  "license": "ISC",
-  "devDependencies": {
-    "@storybook/addon-essentials": "^8.6.15",
-    "@storybook/addon-interactions": "^8.6.15",
-    "@storybook/addon-onboarding": "^8.6.15",
-    "@storybook/addon-webpack5-compiler-swc": "^3.0.0",
-    "@storybook/blocks": "^8.6.15",
-    "@storybook/react": "^8.6.15",
-    "@storybook/react-webpack5": "^8.6.15",
-    "@storybook/test": "^8.6.15",
-    "@types/react": "^19.2.14",
-    "@types/react-dom": "^19.2.3",
-    "prettier": "^3.8.1",
-    "react": "^19.2.4",
-    "react-dom": "^19.2.4",
-    "storybook": "^8.6.15",
-    "storybook-addon-designs": "^6.3.1",
-    "tsup": "^8.5.1",
-    "typescript": "^5.9.3"
-  },
-  "dependencies": {
-    "@react-aria/button": "^3.14.4"
-  }
+	"name": "@evirunurm/thockitty-ds",
+	"version": "0.1.2",
+	"description": "Thockitty Design System",
+	"main": "dist/index.cjs",
+	"module": "dist/index.mjs",
+	"types": "dist/index.d.ts",
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"import": "./dist/index.mjs",
+			"require": "./dist/index.cjs"
+		}
+	},
+	"scripts": {
+		"build": "tsup src/index.ts --format esm,cjs --dts --clean",
+		"storybook": "storybook dev -p 6006",
+		"build-storybook": "storybook build",
+		"format:check": "npx prettier . ",
+		"format": "npx prettier . --write"
+	},
+	"peerDependencies": {
+		"react": "^18.0.0 || ^19.0.0",
+		"react-dom": "^18.0.0 || ^19.0.0"
+	},
+	"files": [
+		"dist"
+	],
+	"publishConfig": {
+		"registry": "https://npm.pkg.github.com"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/evirunurm/thockitty-ds.git"
+	},
+	"license": "ISC",
+	"devDependencies": {
+		"@storybook/addon-essentials": "^8.6.15",
+		"@storybook/addon-interactions": "^8.6.15",
+		"@storybook/addon-onboarding": "^8.6.15",
+		"@storybook/addon-webpack5-compiler-swc": "^3.0.0",
+		"@storybook/blocks": "^8.6.15",
+		"@storybook/react": "^8.6.15",
+		"@storybook/react-webpack5": "^8.6.15",
+		"@storybook/test": "^8.6.15",
+		"@types/react": "^19.2.14",
+		"@types/react-dom": "^19.2.3",
+		"prettier": "3.8.1",
+		"react": "^19.2.4",
+		"react-dom": "^19.2.4",
+		"storybook": "^8.6.15",
+		"storybook-addon-designs": "^6.3.1",
+		"tsup": "^8.5.1",
+		"typescript": "^5.9.3"
+	},
+	"dependencies": {
+		"@react-aria/button": "^3.14.4"
+	}
 }
