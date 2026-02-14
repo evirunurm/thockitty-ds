@@ -1,7 +1,7 @@
 {
   "name": "@evirunurm/thockitty-ds",
-  "version": "0.1.0",
-  "description": "thockitty design system",
+  "version": "0.1.1",
+  "description": "Thockitty Design System",
   "main": "dist/index.cjs",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
