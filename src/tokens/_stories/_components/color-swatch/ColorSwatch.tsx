@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { TokenButton } from '../token-button/TokenButton'
 
 type ColorSwatchParams = {
 	color: Color
@@ -35,15 +36,6 @@ const CAPTION_MONO = {
 }
 
 export const ColorSwatch = ({ color }: ColorSwatchParams) => {
-	const [copied, setCopied] = useState(false)
-
-	const handleCopy = () => {
-		navigator.clipboard.writeText(color.cssVariable).then(() => {
-			setCopied(true)
-			setTimeout(() => setCopied(false), 1500)
-		})
-	}
-
 	return (
 		<div
 			style={{
@@ -132,28 +124,7 @@ export const ColorSwatch = ({ color }: ColorSwatchParams) => {
 					</span>
 				</div>
 			</div>
-			<button
-				onClick={handleCopy}
-				style={{
-					marginTop: 12,
-					...CAPTION_MONO,
-					color: COLORS.gray500,
-					background: 'none',
-					border: 'none',
-					cursor: 'pointer',
-					padding: '4px 8px',
-					borderRadius: 4,
-				}}
-				onMouseEnter={(e) => {
-					e.currentTarget.style.backgroundColor = COLORS.gray200
-				}}
-				onMouseLeave={(e) => {
-					e.currentTarget.style.backgroundColor = 'transparent'
-				}}
-				title="Copy CSS variable name"
-			>
-				{copied ? 'Copied!' : color.cssVariable}
-			</button>
+			<TokenButton value={color.cssVariable} />
 		</div>
 	)
 }

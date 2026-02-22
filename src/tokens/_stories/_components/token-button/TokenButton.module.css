@@ -1,0 +1,12 @@
+.token-button {
+	border: none;
+	cursor: pointer;
+	padding: 4px 8px;
+	border-radius: 4;
+}
+
+.token-button:hover {
+	padding: 4px 8px;
+	border-radius: 4;
+  transition: 1s
+}
