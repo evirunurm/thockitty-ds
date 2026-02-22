@@ -1,0 +1,51 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+
+:root {
+  --foundation-color-base-black: #0f0f0f;
+  --foundation-color-base-white: #fdfdfd;
+  --foundation-color-gray-100: #f4f4f5;
+  --foundation-color-gray-200: #e5e5e7;
+  --foundation-color-gray-300: #d4d4d8;
+  --foundation-color-gray-400: #a1a1aa;
+  --foundation-color-gray-500: #71717a;
+  --foundation-color-gray-600: #52525b;
+  --foundation-color-gray-700: #3f3f46;
+  --foundation-color-gray-800: #27272a;
+  --foundation-color-gray-900: #18181b;
+  --foundation-color-red-500: #e65f89;
+  --foundation-space-001: 4px;
+  --foundation-space-002: 8px;
+  --foundation-space-003: 12px;
+  --foundation-space-004: 16px;
+  --foundation-space-005: 20px;
+  --foundation-space-006: 24px;
+  --foundation-space-007: 28px;
+  --foundation-space-008: 32px;
+  --foundation-space-009: 36px;
+  --foundation-space-010: 40px;
+  --foundation-space-011: 44px;
+  --foundation-space-012: 48px;
+  --foundation-space-013: 52px;
+  --foundation-space-014: 56px;
+  --foundation-space-015: 60px;
+  --foundation-typography-styles-titles-hero: normal 700 96px/auto Geist;
+  --foundation-typography-styles-titles-hero-mono: normal 700 96px/auto 'Geist Mono';
+  --foundation-typography-styles-headings-heading-01: normal 700 40px/auto Geist;
+  --foundation-typography-styles-headings-heading-02: normal 700 32px/auto Geist;
+  --foundation-typography-styles-headings-heading-03: normal 700 24px/auto Geist;
+  --foundation-typography-styles-headings-heading-04: normal 700 20px/auto Geist;
+  --foundation-typography-styles-headings-heading-mono-01: normal 700 40px/auto 'Geist Mono';
+  --foundation-typography-styles-headings-heading-mono-02: normal 700 32px/auto 'Geist Mono';
+  --foundation-typography-styles-headings-heading-mono-03: normal 700 24px/auto 'Geist Mono';
+  --foundation-typography-styles-headings-heading-mono-04: normal 700 20px/auto 'Geist Mono';
+  --foundation-typography-styles-body-body-large: normal 400 18px/auto Geist;
+  --foundation-typography-styles-body-body: normal 400 16px/auto Geist;
+  --foundation-typography-styles-body-body-small: normal 400 14px/auto Geist;
+  --foundation-typography-styles-body-caption: normal 400 12px/auto Geist;
+  --foundation-typography-styles-body-body-mono-large: normal 400 18px/auto 'Geist Mono';
+  --foundation-typography-styles-body-body-mono: normal 400 16px/auto 'Geist Mono';
+  --foundation-typography-styles-body-body-mono-small: normal 400 14px/auto 'Geist Mono';
+  --foundation-typography-styles-body-caption-mono: normal 400 12px/auto 'Geist Mono';
+}

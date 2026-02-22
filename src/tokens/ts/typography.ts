@@ -1,0 +1,200 @@
+export const tokens = [
+	{
+		"name": "FoundationTypographyStylesTitlesHero",
+		"path": "foundation.Typography-styles.titles.hero",
+		"cssVariable": "--foundation-typography-styles-titles-hero",
+		"fontFamily": "Geist",
+		"fontSize": "96px",
+		"fontWeight": 700,
+		"lineHeight": "auto",
+		"letterSpacing": "0%",
+		"fontStyle": "normal"
+	},
+	{
+		"name": "FoundationTypographyStylesTitlesHeroMono",
+		"path": "foundation.Typography-styles.titles.hero-mono",
+		"cssVariable": "--foundation-typography-styles-titles-hero-mono",
+		"fontFamily": "Geist Mono",
+		"fontSize": "96px",
+		"fontWeight": 700,
+		"lineHeight": "auto",
+		"letterSpacing": "0%",
+		"fontStyle": "normal"
+	},
+	{
+		"name": "FoundationTypographyStylesHeadingsHeading01",
+		"path": "foundation.Typography-styles.headings.heading-01",
+		"cssVariable": "--foundation-typography-styles-headings-heading-01",
+		"fontFamily": "Geist",
+		"fontSize": "40px",
+		"fontWeight": 700,
+		"lineHeight": "auto",
+		"letterSpacing": "0%",
+		"fontStyle": "normal"
+	},
+	{
+		"name": "FoundationTypographyStylesHeadingsHeading02",
+		"path": "foundation.Typography-styles.headings.heading-02",
+		"cssVariable": "--foundation-typography-styles-headings-heading-02",
+		"fontFamily": "Geist",
+		"fontSize": "32px",
+		"fontWeight": 700,
+		"lineHeight": "auto",
+		"letterSpacing": "0%",
+		"fontStyle": "normal"
+	},
+	{
+		"name": "FoundationTypographyStylesHeadingsHeading03",
+		"path": "foundation.Typography-styles.headings.heading-03",
+		"cssVariable": "--foundation-typography-styles-headings-heading-03",
+		"fontFamily": "Geist",
+		"fontSize": "24px",
+		"fontWeight": 700,
+		"lineHeight": "auto",
+		"letterSpacing": "0%",
+		"fontStyle": "normal"
+	},
+	{
+		"name": "FoundationTypographyStylesHeadingsHeading04",
+		"path": "foundation.Typography-styles.headings.heading-04",
+		"cssVariable": "--foundation-typography-styles-headings-heading-04",
+		"fontFamily": "Geist",
+		"fontSize": "20px",
+		"fontWeight": 700,
+		"lineHeight": "auto",
+		"letterSpacing": "0%",
+		"fontStyle": "normal"
+	},
+	{
+		"name": "FoundationTypographyStylesHeadingsHeadingMono01",
+		"path": "foundation.Typography-styles.headings.heading-mono-01",
+		"cssVariable": "--foundation-typography-styles-headings-heading-mono-01",
+		"fontFamily": "Geist Mono",
+		"fontSize": "40px",
+		"fontWeight": 700,
+		"lineHeight": "auto",
+		"letterSpacing": "0%",
+		"fontStyle": "normal"
+	},
+	{
+		"name": "FoundationTypographyStylesHeadingsHeadingMono02",
+		"path": "foundation.Typography-styles.headings.heading-mono-02",
+		"cssVariable": "--foundation-typography-styles-headings-heading-mono-02",
+		"fontFamily": "Geist Mono",
+		"fontSize": "32px",
+		"fontWeight": 700,
+		"lineHeight": "auto",
+		"letterSpacing": "0%",
+		"fontStyle": "normal"
+	},
+	{
+		"name": "FoundationTypographyStylesHeadingsHeadingMono03",
+		"path": "foundation.Typography-styles.headings.heading-mono-03",
+		"cssVariable": "--foundation-typography-styles-headings-heading-mono-03",
+		"fontFamily": "Geist Mono",
+		"fontSize": "24px",
+		"fontWeight": 700,
+		"lineHeight": "auto",
+		"letterSpacing": "0%",
+		"fontStyle": "normal"
+	},
+	{
+		"name": "FoundationTypographyStylesHeadingsHeadingMono04",
+		"path": "foundation.Typography-styles.headings.heading-mono-04",
+		"cssVariable": "--foundation-typography-styles-headings-heading-mono-04",
+		"fontFamily": "Geist Mono",
+		"fontSize": "20px",
+		"fontWeight": 700,
+		"lineHeight": "auto",
+		"letterSpacing": "0%",
+		"fontStyle": "normal"
+	},
+	{
+		"name": "FoundationTypographyStylesBodyBodyLarge",
+		"path": "foundation.Typography-styles.body.body-large",
+		"cssVariable": "--foundation-typography-styles-body-body-large",
+		"fontFamily": "Geist",
+		"fontSize": "18px",
+		"fontWeight": 400,
+		"lineHeight": "auto",
+		"letterSpacing": "0%",
+		"fontStyle": "normal"
+	},
+	{
+		"name": "FoundationTypographyStylesBodyBody",
+		"path": "foundation.Typography-styles.body.body",
+		"cssVariable": "--foundation-typography-styles-body-body",
+		"fontFamily": "Geist",
+		"fontSize": "16px",
+		"fontWeight": 400,
+		"lineHeight": "auto",
+		"letterSpacing": "0%",
+		"fontStyle": "normal"
+	},
+	{
+		"name": "FoundationTypographyStylesBodyBodySmall",
+		"path": "foundation.Typography-styles.body.body-small",
+		"cssVariable": "--foundation-typography-styles-body-body-small",
+		"fontFamily": "Geist",
+		"fontSize": "14px",
+		"fontWeight": 400,
+		"lineHeight": "auto",
+		"letterSpacing": "0%",
+		"fontStyle": "normal"
+	},
+	{
+		"name": "FoundationTypographyStylesBodyCaption",
+		"path": "foundation.Typography-styles.body.caption",
+		"cssVariable": "--foundation-typography-styles-body-caption",
+		"fontFamily": "Geist",
+		"fontSize": "12px",
+		"fontWeight": 400,
+		"lineHeight": "auto",
+		"letterSpacing": "0%",
+		"fontStyle": "normal"
+	},
+	{
+		"name": "FoundationTypographyStylesBodyBodyMonoLarge",
+		"path": "foundation.Typography-styles.body.body-mono-large",
+		"cssVariable": "--foundation-typography-styles-body-body-mono-large",
+		"fontFamily": "Geist Mono",
+		"fontSize": "18px",
+		"fontWeight": 400,
+		"lineHeight": "auto",
+		"letterSpacing": "0%",
+		"fontStyle": "normal"
+	},
+	{
+		"name": "FoundationTypographyStylesBodyBodyMono",
+		"path": "foundation.Typography-styles.body.body-mono",
+		"cssVariable": "--foundation-typography-styles-body-body-mono",
+		"fontFamily": "Geist Mono",
+		"fontSize": "16px",
+		"fontWeight": 400,
+		"lineHeight": "auto",
+		"letterSpacing": "0%",
+		"fontStyle": "normal"
+	},
+	{
+		"name": "FoundationTypographyStylesBodyBodyMonoSmall",
+		"path": "foundation.Typography-styles.body.body-mono-small",
+		"cssVariable": "--foundation-typography-styles-body-body-mono-small",
+		"fontFamily": "Geist Mono",
+		"fontSize": "14px",
+		"fontWeight": 400,
+		"lineHeight": "auto",
+		"letterSpacing": "0%",
+		"fontStyle": "normal"
+	},
+	{
+		"name": "FoundationTypographyStylesBodyCaptionMono",
+		"path": "foundation.Typography-styles.body.caption-mono",
+		"cssVariable": "--foundation-typography-styles-body-caption-mono",
+		"fontFamily": "Geist Mono",
+		"fontSize": "12px",
+		"fontWeight": 400,
+		"lineHeight": "auto",
+		"letterSpacing": "0%",
+		"fontStyle": "normal"
+	}
+]

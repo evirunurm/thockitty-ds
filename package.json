@@ -13,11 +13,12 @@
 		}
 	},
 	"scripts": {
-		"build": "tsup src/index.ts --format esm,cjs --dts --clean",
+		"build": "bash build-tokens.sh && tsup src/index.ts --format esm,cjs --dts --clean",
 		"storybook": "storybook dev -p 6006",
 		"build-storybook": "storybook build",
 		"format:check": "npx prettier . ",
-		"format": "npx prettier . --write"
+		"format": "npx prettier . --write",
+		"build-tokens": "style-dictionary build --config sd.config.mjs"
 	},
 	"peerDependencies": {
 		"react": "^18.0.0 || ^19.0.0",
@@ -50,6 +51,7 @@
 		"react-dom": "^19.2.4",
 		"storybook": "^8.6.15",
 		"storybook-addon-designs": "^6.3.1",
+		"style-dictionary": "^5.3.0",
 		"tsup": "^8.5.1",
 		"typescript": "^5.9.3"
 	},
