@@ -1,6 +1,8 @@
 node_modules
 dist
+.parcel-cache
 storybook-static
 tokens/ts/
 
 *storybook.log
+settings.local.json

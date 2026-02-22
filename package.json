@@ -2,18 +2,24 @@
 	"name": "@evirunurm/thockitty-ds",
 	"version": "0.1.2",
 	"description": "Thockitty Design System",
-	"main": "dist/index.cjs",
+	"source": "src/index.ts",
+	"main": "dist/index.js",
 	"module": "dist/index.mjs",
 	"types": "dist/index.d.ts",
 	"exports": {
 		".": {
 			"types": "./dist/index.d.ts",
 			"import": "./dist/index.mjs",
-			"require": "./dist/index.cjs"
+			"require": "./dist/index.js"
 		}
 	},
+	"alias": {
+		"react": false,
+		"react-dom": false,
+		"react/jsx-runtime": false
+	},
 	"scripts": {
-		"build": "bash build-tokens.sh && tsup src/index.ts --format esm,cjs --dts --clean",
+		"build": "bash build-tokens.sh && parcel build",
 		"storybook": "storybook dev -p 6006",
 		"build-storybook": "storybook build",
 		"format:check": "npx prettier . ",
@@ -36,6 +42,8 @@
 	},
 	"license": "ISC",
 	"devDependencies": {
+		"@parcel/packager-ts": "^2.16.4",
+		"@parcel/transformer-typescript-types": "^2.16.4",
 		"@storybook/addon-essentials": "^8.6.15",
 		"@storybook/addon-interactions": "^8.6.15",
 		"@storybook/addon-onboarding": "^8.6.15",
@@ -46,13 +54,13 @@
 		"@storybook/test": "^8.6.15",
 		"@types/react": "^19.2.14",
 		"@types/react-dom": "^19.2.3",
+		"parcel": "^2.16.4",
 		"prettier": "3.8.1",
 		"react": "^19.2.4",
 		"react-dom": "^19.2.4",
 		"storybook": "^8.6.15",
 		"storybook-addon-designs": "^6.3.1",
 		"style-dictionary": "^5.3.0",
-		"tsup": "^8.5.1",
 		"typescript": "^5.9.3"
 	},
 	"dependencies": {
