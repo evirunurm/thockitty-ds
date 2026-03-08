@@ -19,7 +19,7 @@ export const TokenButton = ({ value }: TokenButtonParams) => {
 	return (
 		<Button
 			onClick={handleCopy}
-			className={styles['token-button']}
+			className={styles.button}
 			aria-title="Copy CSS variable name"
 		>
 			{copied ? 'Copied!' : value}

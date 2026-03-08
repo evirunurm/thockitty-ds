@@ -1,70 +1,31 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { tokens } from '../ts/spacing'
+import { SpacingToken } from './_components/spacing-token/SpacingToken'
+import { Section } from './_components/section/Section'
+
+const groups = tokens.reduce<Record<string, typeof tokens>>((acc, token) => {
+	const group = token.path.split('.')[1] ?? 'other'
+	;(acc[group] ??= []).push(token)
+	return acc
+}, {})
 
 const SpacingScale = () => (
-	<div style={{ fontFamily: 'system-ui, sans-serif' }}>
-		<table style={{ width: '100%', borderCollapse: 'collapse' }}>
-			<thead>
-				<tr
+	<div style={{ display: 'flex', flexDirection: 'column', gap: 48 }}>
+		{Object.entries(groups).map(([group, groupTokens]) => (
+			<Section key={group} title={group}>
+				<div
 					style={{
-						textAlign: 'left',
-						borderBottom: '2px solid #e0e0e0',
+						display: 'grid',
+						gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))',
+						gap: 16,
 					}}
 				>
-					<th style={{ padding: '8px 12px' }}>Token</th>
-					<th style={{ padding: '8px 12px' }}>Value</th>
-					<th style={{ padding: '8px 12px' }}>Preview</th>
-					<th style={{ padding: '8px 12px' }}>CSS Variable</th>
-				</tr>
-			</thead>
-			<tbody>
-				{tokens.map((token) => (
-					<tr
-						key={token.name}
-						style={{ borderBottom: '1px solid #f0f0f0' }}
-					>
-						<td
-							style={{
-								padding: '8px 12px',
-								fontSize: 13,
-								fontWeight: 600,
-							}}
-						>
-							{token.path}
-						</td>
-						<td
-							style={{
-								padding: '8px 12px',
-								fontSize: 13,
-								fontFamily: 'monospace',
-							}}
-						>
-							{token.value}
-						</td>
-						<td style={{ padding: '8px 12px' }}>
-							<div
-								style={{
-									width: token.value,
-									height: 16,
-									backgroundColor: '#e65f89',
-									borderRadius: 2,
-								}}
-							/>
-						</td>
-						<td
-							style={{
-								padding: '8px 12px',
-								fontSize: 11,
-								fontFamily: 'monospace',
-								color: '#999',
-							}}
-						>
-							var({token.cssVariable})
-						</td>
-					</tr>
-				))}
-			</tbody>
-		</table>
+					{groupTokens.map((token) => (
+						<SpacingToken key={token.name} token={token} />
+					))}
+				</div>
+			</Section>
+		))}
 	</div>
 )
 

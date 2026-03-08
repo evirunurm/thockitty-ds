@@ -11,7 +11,7 @@ const groups = tokens.reduce<Record<string, typeof tokens>>((acc, token) => {
 }, {})
 
 const ColorSwatches = () => (
-	<div>
+	<div style={{ display: 'flex', flexDirection: 'column', gap: 48 }}>
 		{Object.entries(groups).map(([group, groupTokens]) => (
 			<Section title={group}>
 				<div
