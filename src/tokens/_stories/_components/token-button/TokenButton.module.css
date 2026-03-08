@@ -1,12 +1,13 @@
-.token-button {
+.button {
+	font-family: var(--font-geist-sans);
+	font-weight: 400;
+	font-size: 12px;
 	border: none;
 	cursor: pointer;
-	padding: 4px 8px;
-	border-radius: 4;
+	background: var(--foundation-color-base-white);
 }
 
-.token-button:hover {
-	padding: 4px 8px;
-	border-radius: 4;
-  transition: 1s
+.button:hover {
+	background: var(--foundation-color-gray-300);
+	transition: 0.08s ease-in-out;
 }
