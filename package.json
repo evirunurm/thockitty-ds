@@ -3,15 +3,22 @@
 	"version": "0.1.3",
 	"description": "Thockitty Design System",
 	"source": "src/index.ts",
+	"targets": {
+		"style": {
+			"source": "src/index.css"
+		}
+	},
 	"main": "dist/index.js",
 	"module": "dist/index.mjs",
 	"types": "dist/index.d.ts",
+	"style": "dist/index.css",
 	"exports": {
 		".": {
 			"types": "./dist/index.d.ts",
 			"import": "./dist/index.mjs",
 			"require": "./dist/index.js"
-		}
+		},
+		"./styles": "./dist/index.css"
 	},
 	"alias": {
 		"react": false,
@@ -19,7 +26,7 @@
 		"react/jsx-runtime": false
 	},
 	"scripts": {
-		"build": "bash build-tokens.sh && parcel build",
+		"build": "npx style-dictionary build --config sd.config.mjs && parcel build",
 		"storybook": "storybook dev -p 6006",
 		"build-storybook": "storybook build",
 		"format:check": "npx prettier . ",
