@@ -4,7 +4,7 @@ export default create({
 	base: 'dark',
 
 	// Brand
-	brandImage: '/brand/thockitty-dark.svg',
+	brandImage: `${process.env.STORYBOOK_BASE_PATH ?? ''}/brand/thockitty-dark.svg`,
 	brandTitle: 'thockitty',
 	brandTarget: '_self',
 
