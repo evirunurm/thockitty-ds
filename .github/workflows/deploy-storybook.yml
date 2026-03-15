@@ -33,7 +33,9 @@ jobs:
         id: pages
 
       - name: Build Storybook
-        run: npm run build-storybook -- --output-dir storybook-static --public-url "${{ steps.pages.outputs.base_path }}/"
+        run: npm run build-storybook -- --output-dir storybook-static
+        env:
+          STORYBOOK_BASE_PATH: ${{ steps.pages.outputs.base_path }}
 
       - uses: actions/upload-pages-artifact@v3
         with:
