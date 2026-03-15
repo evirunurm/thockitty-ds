@@ -1,0 +1,143 @@
+.button {
+	/* Layout */
+	position: relative;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	overflow: hidden;
+
+	/* Typography */
+	font-family: 'Geist Mono', monospace;
+	font-size: 12px;
+	font-weight: 500;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+	white-space: nowrap;
+
+	/* Spacing */
+	padding: var(--foundation-space-002) var(--foundation-space-004);
+	min-height: 36px;
+
+	/* Fill-sweep via background trick */
+	color: var(--foundation-color-base-black);
+	background-image: linear-gradient(
+		to right,
+		var(--foundation-color-gray-100) 50%,
+		transparent 50%
+	);
+	background-size: 202% 100%;
+	background-position: 100% 0;
+
+	/* Border */
+	border: 1px solid var(--foundation-color-gray-700);
+	border-radius: 0;
+
+	/* Resets */
+	cursor: pointer;
+	user-select: none;
+	-webkit-tap-highlight-color: transparent;
+	outline: none;
+	box-shadow: none;
+
+	/* Snappy fill + color swap */
+	transition:
+		background-position 110ms cubic-bezier(0.4, 0, 0.1, 1),
+		color 110ms cubic-bezier(0.4, 0, 0.1, 1),
+		border-color 110ms ease;
+}
+
+/* Left bracket */
+.button::before {
+	content: '[';
+	margin-right: 0.45em;
+	color: var(--foundation-color-gray-400);
+	flex-shrink: 0;
+	transition: color 110ms ease;
+}
+
+/* Right bracket — becomes blinking cursor on hover */
+.button::after {
+	content: ']';
+	margin-left: 0.45em;
+	color: var(--foundation-color-gray-400);
+	flex-shrink: 0;
+	transition: color 110ms ease;
+}
+
+/* ── Hover — left-to-right fill, invert ─────────────────── */
+.button:hover:not(:disabled) {
+	background-position: 0% 0;
+	color: var(--foundation-color-gray-900);
+	border-color: var(--foundation-color-gray-200);
+}
+
+.button:hover:not(:disabled)::before {
+	content: '>';
+	color: var(--foundation-color-gray-400);
+}
+
+.button:hover:not(:disabled)::after {
+	content: '_';
+	color: var(--foundation-color-gray-400);
+	animation: cursor-blink 0.75s step-end infinite;
+}
+
+/* ── Active — flash accent, confirm press ───────────────── */
+.button:active:not(:disabled) {
+	background-image: linear-gradient(
+		to right,
+		var(--foundation-color-red-500) 50%,
+		transparent 50%
+	);
+	background-position: 0% 0;
+	color: var(--foundation-color-base-black);
+	border-color: var(--foundation-color-red-500);
+	transition-duration: 40ms;
+}
+
+.button:active:not(:disabled)::before {
+	content: '>';
+	color: color-mix(
+		in hsl,
+		var(--foundation-color-base-black) 40%,
+		transparent 60%
+	);
+}
+.button:active:not(:disabled)::after {
+	content: '!';
+	color: color-mix(
+		in hsl,
+		var(--foundation-color-base-black) 40%,
+		transparent 60%
+	);
+	animation: none;
+}
+
+/* ── Focus — dashed outline offset ─────────────────────── */
+.button:focus-visible {
+	outline: 1px dashed var(--foundation-color-gray-500);
+	outline-offset: 4px;
+}
+
+/* ── Disabled ───────────────────────────────────────────── */
+.button:disabled {
+	cursor: not-allowed;
+	color: var(--foundation-color-gray-700);
+	border-color: var(--foundation-color-gray-800);
+}
+
+.button:disabled::before,
+.button:disabled::after {
+	color: var(--foundation-color-gray-800);
+}
+
+/* ── Cursor blink ───────────────────────────────────────── */
+@keyframes cursor-blink {
+	0%,
+	100% {
+		opacity: 1;
+	}
+	50% {
+		opacity: 0;
+	}
+}
