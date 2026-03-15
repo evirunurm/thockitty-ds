@@ -14,12 +14,5 @@ const config: StorybookConfig = {
 		name: '@storybook/react-webpack5',
 		options: {},
 	},
-	webpackFinal: async (config) => {
-		if (process.env.STORYBOOK_BASE_PATH) {
-			config.output = config.output ?? {}
-			config.output.publicPath = `${process.env.STORYBOOK_BASE_PATH}/`
-		}
-		return config
-	},
 }
 export default config
