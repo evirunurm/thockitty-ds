@@ -73,6 +73,7 @@
 		"typescript-plugin-css-modules": "^5.2.0"
 	},
 	"dependencies": {
-		"@react-aria/button": "^3.14.4"
+		"@react-aria/button": "^3.14.4",
+		"classnames": "^2.5.1"
 	}
 }

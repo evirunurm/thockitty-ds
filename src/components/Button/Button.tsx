@@ -1,6 +1,8 @@
 import React, { useRef } from 'react'
 import { useButton } from '@react-aria/button'
 import type { AriaButtonProps } from '@react-aria/button'
+import cx from 'classnames'
+import styles from './Button.module.css'
 
 export interface ButtonProps extends AriaButtonProps<'button'> {
 	className?: string
@@ -19,7 +21,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 			<button
 				{...buttonProps}
 				ref={ref}
-				className={className}
+				className={cx(styles.button, className)}
 				style={style}
 			>
 				{children}
