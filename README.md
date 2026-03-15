@@ -2,6 +2,10 @@
 
 A React component library built with [React Aria](https://react-spectrum.adobe.com/react-aria/) for accessible, unstyled UI components.
 
+## Documentation
+
+Browse the component library live at: https://evirunurm.github.io/thockitty-ds/
+
 ## Installation
 
 ```bash
