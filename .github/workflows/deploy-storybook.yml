@@ -29,10 +29,11 @@ jobs:
       - name: Build library
         run: npm run build
 
-      - name: Build Storybook
-        run: npm run build-storybook -- --output-dir storybook-static
-
       - uses: actions/configure-pages@v5
+        id: pages
+
+      - name: Build Storybook
+        run: npm run build-storybook -- --output-dir storybook-static --public-url "${{ steps.pages.outputs.base_path }}/"
 
       - uses: actions/upload-pages-artifact@v3
         with:
