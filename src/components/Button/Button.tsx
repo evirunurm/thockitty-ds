@@ -4,7 +4,10 @@ import type { AriaButtonProps } from '@react-aria/button'
 import cx from 'classnames'
 import styles from './Button.module.css'
 
+type ButtonVariant = 'on-black' | 'on-white'
+
 export interface ButtonProps extends AriaButtonProps<'button'> {
+	variant?: ButtonVariant
 	className?: string
 	style?: React.CSSProperties
 }
@@ -15,13 +18,17 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 		const ref =
 			(forwardedRef as React.RefObject<HTMLButtonElement>) ?? localRef
 		const { buttonProps } = useButton(props, ref)
-		const { children, className, style } = props
+		const { variant = 'on-black', children, className, style } = props
 
 		return (
 			<button
 				{...buttonProps}
 				ref={ref}
-				className={cx(styles.button, className)}
+				className={cx(
+					styles.button,
+					variant && styles[variant],
+					className
+				)}
 				style={style}
 			>
 				{children}
