@@ -12,20 +12,34 @@ type Story = StoryObj<typeof Button>
 
 export const Default: Story = {
 	args: {
-		children: 'Button',
+		children: 'button',
 	},
 }
 
 export const Disabled: Story = {
 	args: {
-		children: 'Disabled',
+		children: 'disabled',
 		isDisabled: true,
 	},
 }
 
-export const WithOnPress: Story = {
+export const OnWhite: Story = {
 	args: {
-		children: 'Click me',
-		onPress: () => alert('Button pressed!'),
+		children: 'button',
+		variant: 'on-white',
+	},
+	parameters: {
+		backgrounds: { default: 'light' },
+	},
+}
+
+export const OnWhiteDisabled: Story = {
+	args: {
+		children: 'disabled',
+		variant: 'on-white',
+		isDisabled: true,
+	},
+	parameters: {
+		backgrounds: { default: 'light' },
 	},
 }
