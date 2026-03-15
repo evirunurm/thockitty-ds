@@ -6,7 +6,7 @@ export const tokens = [
 		"fontFamily": "Geist",
 		"fontSize": "96px",
 		"fontWeight": 700,
-		"lineHeight": "auto",
+		"lineHeight": "normal",
 		"letterSpacing": "0%",
 		"fontStyle": "normal"
 	},
@@ -17,7 +17,7 @@ export const tokens = [
 		"fontFamily": "Geist Mono",
 		"fontSize": "96px",
 		"fontWeight": 700,
-		"lineHeight": "auto",
+		"lineHeight": "normal",
 		"letterSpacing": "0%",
 		"fontStyle": "normal"
 	},
@@ -28,7 +28,7 @@ export const tokens = [
 		"fontFamily": "Geist",
 		"fontSize": "40px",
 		"fontWeight": 700,
-		"lineHeight": "auto",
+		"lineHeight": "normal",
 		"letterSpacing": "0%",
 		"fontStyle": "normal"
 	},
@@ -39,7 +39,7 @@ export const tokens = [
 		"fontFamily": "Geist",
 		"fontSize": "32px",
 		"fontWeight": 700,
-		"lineHeight": "auto",
+		"lineHeight": "normal",
 		"letterSpacing": "0%",
 		"fontStyle": "normal"
 	},
@@ -50,7 +50,7 @@ export const tokens = [
 		"fontFamily": "Geist",
 		"fontSize": "24px",
 		"fontWeight": 700,
-		"lineHeight": "auto",
+		"lineHeight": "normal",
 		"letterSpacing": "0%",
 		"fontStyle": "normal"
 	},
@@ -61,7 +61,7 @@ export const tokens = [
 		"fontFamily": "Geist",
 		"fontSize": "20px",
 		"fontWeight": 700,
-		"lineHeight": "auto",
+		"lineHeight": "normal",
 		"letterSpacing": "0%",
 		"fontStyle": "normal"
 	},
@@ -72,7 +72,7 @@ export const tokens = [
 		"fontFamily": "Geist Mono",
 		"fontSize": "40px",
 		"fontWeight": 700,
-		"lineHeight": "auto",
+		"lineHeight": "normal",
 		"letterSpacing": "0%",
 		"fontStyle": "normal"
 	},
@@ -83,7 +83,7 @@ export const tokens = [
 		"fontFamily": "Geist Mono",
 		"fontSize": "32px",
 		"fontWeight": 700,
-		"lineHeight": "auto",
+		"lineHeight": "normal",
 		"letterSpacing": "0%",
 		"fontStyle": "normal"
 	},
@@ -94,7 +94,7 @@ export const tokens = [
 		"fontFamily": "Geist Mono",
 		"fontSize": "24px",
 		"fontWeight": 700,
-		"lineHeight": "auto",
+		"lineHeight": "normal",
 		"letterSpacing": "0%",
 		"fontStyle": "normal"
 	},
@@ -105,7 +105,7 @@ export const tokens = [
 		"fontFamily": "Geist Mono",
 		"fontSize": "20px",
 		"fontWeight": 700,
-		"lineHeight": "auto",
+		"lineHeight": "normal",
 		"letterSpacing": "0%",
 		"fontStyle": "normal"
 	},
@@ -116,7 +116,7 @@ export const tokens = [
 		"fontFamily": "Geist",
 		"fontSize": "18px",
 		"fontWeight": 400,
-		"lineHeight": "auto",
+		"lineHeight": "normal",
 		"letterSpacing": "0%",
 		"fontStyle": "normal"
 	},
@@ -127,7 +127,7 @@ export const tokens = [
 		"fontFamily": "Geist",
 		"fontSize": "16px",
 		"fontWeight": 400,
-		"lineHeight": "auto",
+		"lineHeight": "normal",
 		"letterSpacing": "0%",
 		"fontStyle": "normal"
 	},
@@ -138,7 +138,7 @@ export const tokens = [
 		"fontFamily": "Geist",
 		"fontSize": "14px",
 		"fontWeight": 400,
-		"lineHeight": "auto",
+		"lineHeight": "normal",
 		"letterSpacing": "0%",
 		"fontStyle": "normal"
 	},
@@ -149,7 +149,7 @@ export const tokens = [
 		"fontFamily": "Geist",
 		"fontSize": "12px",
 		"fontWeight": 400,
-		"lineHeight": "auto",
+		"lineHeight": "normal",
 		"letterSpacing": "0%",
 		"fontStyle": "normal"
 	},
@@ -160,7 +160,7 @@ export const tokens = [
 		"fontFamily": "Geist Mono",
 		"fontSize": "18px",
 		"fontWeight": 400,
-		"lineHeight": "auto",
+		"lineHeight": "normal",
 		"letterSpacing": "0%",
 		"fontStyle": "normal"
 	},
@@ -171,7 +171,7 @@ export const tokens = [
 		"fontFamily": "Geist Mono",
 		"fontSize": "16px",
 		"fontWeight": 400,
-		"lineHeight": "auto",
+		"lineHeight": "normal",
 		"letterSpacing": "0%",
 		"fontStyle": "normal"
 	},
@@ -182,7 +182,7 @@ export const tokens = [
 		"fontFamily": "Geist Mono",
 		"fontSize": "14px",
 		"fontWeight": 400,
-		"lineHeight": "auto",
+		"lineHeight": "normal",
 		"letterSpacing": "0%",
 		"fontStyle": "normal"
 	},
@@ -193,7 +193,7 @@ export const tokens = [
 		"fontFamily": "Geist Mono",
 		"fontSize": "12px",
 		"fontWeight": 400,
-		"lineHeight": "auto",
+		"lineHeight": "normal",
 		"letterSpacing": "0%",
 		"fontStyle": "normal"
 	}
