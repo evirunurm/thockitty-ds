@@ -1,6 +1,6 @@
 {
 	"name": "@evirunurm/thockitty-ds",
-	"version": "0.1.4",
+	"version": "0.1.5",
 	"description": "Thockitty Design System",
 	"source": "src/index.ts",
 	"targets": {
