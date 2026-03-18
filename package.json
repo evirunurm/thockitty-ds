@@ -1,12 +1,12 @@
 {
 	"name": "@evirunurm/thockitty-ds",
-	"version": "0.1.5",
+	"version": "0.1.7",
 	"description": "Thockitty Design System",
 	"source": "src/index.ts",
 	"targets": {
-		"style": {
-			"source": "src/index.css"
-		}
+		"main": {},
+		"module": {},
+		"types": {}
 	},
 	"main": "dist/index.js",
 	"module": "dist/index.mjs",
@@ -26,7 +26,7 @@
 		"react/jsx-runtime": false
 	},
 	"scripts": {
-		"build": "npx style-dictionary build --config sd.config.mjs && parcel build",
+		"build": "npx style-dictionary build --config sd.config.mjs && parcel build --target main && parcel build --target module --target types",
 		"storybook": "storybook dev -p 6006",
 		"build-storybook": "storybook build",
 		"format:check": "npx prettier . ",
