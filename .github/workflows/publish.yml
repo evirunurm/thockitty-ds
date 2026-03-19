@@ -23,10 +23,6 @@ jobs:
 
             - run: npm ci
             - run: npm version patch --no-git-tag-version
-            - run: npm run build
-            - run: npm publish
-              env:
-                  NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
             - name: Commit and push version bump
               run: |
@@ -36,3 +32,8 @@ jobs:
                   git add package.json package-lock.json
                   git commit -m "chore: bump version to $VERSION"
                   git push
+
+            - run: npm run build
+            - run: npm publish
+              env:
+                  NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
