@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react-webpack5'
 import { tokens } from '../ts/spacing'
 import { SpacingToken } from './_components/spacing-token/SpacingToken'
 import { Section } from './_components/section/Section'

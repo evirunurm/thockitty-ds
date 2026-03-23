@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react-webpack5'
 import { tokens } from '../ts/typography'
 import { TypographyToken } from './_components/typography-token/TypographyToken'
 import { Section } from './_components/section/Section'
