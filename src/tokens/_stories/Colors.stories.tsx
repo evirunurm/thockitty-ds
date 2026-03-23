@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react-webpack5'
 import { tokens } from '../ts/colors'
 import { ColorSwatch } from './_components/color-swatch/ColorSwatch'
 import { Section } from './_components/section/Section'
