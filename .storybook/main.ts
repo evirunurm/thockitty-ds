@@ -8,6 +8,8 @@ const config: StorybookConfig = {
 		'@storybook/addon-a11y',
 		'@storybook/addon-docs',
 		'@storybook/addon-mcp',
+		'storybook-addon-pseudo-states',
+		'storybook-addon-tag-badges',
 	],
 	framework: {
 		name: '@storybook/react-webpack5',

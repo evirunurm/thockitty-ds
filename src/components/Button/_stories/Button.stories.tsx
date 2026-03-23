@@ -4,7 +4,7 @@ import { Button } from '../Button'
 const meta: Meta<typeof Button> = {
 	title: 'Components/Button',
 	component: Button,
-	tags: ['autodocs'],
+	tags: ['in-progress'],
 }
 
 export default meta
@@ -29,10 +29,10 @@ export const OnWhite: Story = {
 		variant: 'on-white',
 	},
 	globals: {
-        backgrounds: {
-            value: "light"
-        }
-    },
+		backgrounds: {
+			value: 'light',
+		},
+	},
 }
 
 export const OnWhiteDisabled: Story = {
@@ -42,8 +42,8 @@ export const OnWhiteDisabled: Story = {
 		isDisabled: true,
 	},
 	globals: {
-        backgrounds: {
-            value: "light"
-        }
-    },
+		backgrounds: {
+			value: 'light',
+		},
+	},
 }
