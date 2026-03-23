@@ -71,6 +71,7 @@
 	},
 	"dependencies": {
 		"@react-aria/button": "^3.14.4",
+		"@storybook/mcp": "^0.6.1",
 		"classnames": "^2.5.1"
 	}
 }
