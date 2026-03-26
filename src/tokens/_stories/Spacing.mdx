@@ -1,0 +1,31 @@
+import { Meta, Unstyled } from '@storybook/addon-docs/blocks'
+import { tokens } from '../ts/spacing'
+import { SpacingToken } from './_components/spacing-token/SpacingToken'
+import { Section } from './_components/section/Section'
+import { DocPage } from './_components/doc-page/DocPage'
+
+export const groups = tokens.reduce((acc, token) => {
+	const group = token.path.split('.')[1] ?? 'other'
+	;(acc[group] ??= []).push(token)
+	return acc
+}, {})
+
+export const descriptions = {
+	space: 'Use these tokens for padding, gap, and margin to maintain consistent rhythm across the UI.',
+}
+
+<Meta title="Tokens/Spacing" />
+
+<Unstyled>
+<DocPage>
+	{Object.entries(groups).map(([group, groupTokens]) => (
+		<Section key={group} title={group} description={descriptions[group]} bordered>
+			<div style={{ display: 'flex', flexDirection: 'column' }}>
+				{groupTokens.map((token) => (
+					<SpacingToken key={token.name} token={token} />
+				))}
+			</div>
+		</Section>
+	))}
+</DocPage>
+</Unstyled>

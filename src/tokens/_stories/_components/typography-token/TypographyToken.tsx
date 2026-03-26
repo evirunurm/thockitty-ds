@@ -51,32 +51,31 @@ export const TypographyToken = ({ token }: TypographyTokenParams) => {
 			</div>
 			<div className={styles.divider} style={{ backgroundColor: COLORS.gray300 }} />
 			<div className={styles.meta}>
-				<table className={styles.table}>
-					<tbody>
-						{[
-							['Family', token.fontFamily],
-							['Size', token.fontSize],
-							['Weight', String(token.fontWeight)],
-							['Line Height', token.lineHeight],
-							['Letter Spacing', token.letterSpacing],
-						].map(([label, value]) => (
-							<tr key={label}>
-								<td
-									className={styles.tableLabel}
-									style={{ ...CAPTION_MONO, fontWeight: 600, color: COLORS.baseBlack }}
-								>
-									{label}
-								</td>
-								<td
-									className={styles.tableValue}
-									style={{ ...CAPTION_MONO, color: COLORS.gray500 }}
-								>
-									{value}
-								</td>
-							</tr>
-						))}
-					</tbody>
-				</table>
+				<div className={styles.tokenList}>
+					{[
+						['Family', token.fontFamily],
+						['Size', token.fontSize],
+						['Weight', String(token.fontWeight)],
+						['Line Height', token.lineHeight],
+						['Letter Spacing', token.letterSpacing],
+					].map(([key, value]) => (
+						<div key={key} className={styles.tokenRow}>
+							<span
+								className={styles.tokenKey}
+								style={{ ...CAPTION_MONO, fontWeight: 600, color: COLORS.baseBlack }}
+							>
+								{key}
+							</span>
+							<span className={styles.tokenSep} aria-hidden="true" />
+							<span
+								className={styles.tokenValue}
+								style={{ ...CAPTION_MONO, color: COLORS.gray500 }}
+							>
+								{value}
+							</span>
+						</div>
+					))}
+				</div>
 				<TokenButton value={token.cssVariable} />
 			</div>
 		</div>
