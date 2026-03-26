@@ -15,6 +15,19 @@ const config: StorybookConfig = {
 		name: '@storybook/react-webpack5',
 		options: {},
 	},
+	typescript: {
+		reactDocgen: 'react-docgen-typescript',
+		reactDocgenTypescriptOptions: {
+			shouldExtractLiteralValuesFromEnum: true,
+			shouldRemoveUndefinedFromOptional: true,
+			propFilter: (prop) => {
+				return (
+					!['className', 'style', 'ref', 'key'].includes(prop.name) &&
+					!prop.name.startsWith('aria-')
+				)
+			},
+		},
+	},
 	webpackFinal: (config) => {
 		// css-loader v7 defaults namedExport:true (esModule mode), but style-loader v4
 		// reads content.locals which is only set when namedExport:false — patch it here.
@@ -23,8 +36,18 @@ const config: StorybookConfig = {
 		for (const rule of rules) {
 			if (rule?.test instanceof RegExp && rule.test.test('test.css')) {
 				for (const use of rule.use ?? []) {
-					if (typeof use?.loader === 'string' && use.loader.includes('css-loader')) {
-						use.options = { ...use.options, modules: { auto: true, namedExport: false, exportLocalsConvention: 'as-is' } }
+					if (
+						typeof use?.loader === 'string' &&
+						use.loader.includes('css-loader')
+					) {
+						use.options = {
+							...use.options,
+							modules: {
+								auto: true,
+								namedExport: false,
+								exportLocalsConvention: 'as-is',
+							},
+						}
 					}
 				}
 			}

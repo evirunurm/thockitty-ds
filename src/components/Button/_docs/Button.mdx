@@ -5,13 +5,13 @@ import * as ButtonStories from '../_stories/Button.stories'
 
 # Button
 
-A keyboard-styled action trigger with a fill-sweep hover animation and two contrast variants.
+A terminal-styled action trigger with a fill-sweep hover animation.
 
 ## When to use
 
-Use `Button` for any primary or secondary action that the user can invoke — form submissions, modal confirmations, navigation triggers, or standalone CTAs. It is built on `@react-aria/button` so it handles keyboard interaction, `aria-disabled`, and focus management out of the box.
+Use `Button` for any action that the user can invoke: form submissions, modal confirmations, navigation triggers, or standalone CTAs.
 
-Always choose the variant that provides sufficient contrast against the surrounding surface.
+Choose the variant that matches the surrounding surface.
 
 ## Variants
 
@@ -39,15 +39,11 @@ Always choose the variant that provides sufficient contrast against the surround
 
 ### Do
 
-- **Use `isDisabled`** instead of a native `disabled` attribute — React Aria handles the accessible state correctly.
 - **Match the variant to the background** — use `on-white` when the button sits on a light surface so the hover fill inverts correctly.
-- **Keep labels concise** — the monospace typeface and bracket decoration are designed for short, action-oriented text (e.g. "Submit", "Confirm", "Cancel").
-- **Let the component own focus styles** — the dashed `outline-offset` focus ring meets WCAG 2.4.11; do not override it with `outline: none`.
 
 ### Don't
 
-- **Don't use it for navigation** — if the action routes to a new URL, use an anchor (`<a>`) styled as a link instead of a `Button`.
-- **Don't rely on the `on-black` variant on white or near-white backgrounds** — the fill animation requires the background gradient to be visible; on a white surface the initial state will disappear.
+- **Don't use it for navigation** — if the action routes to a new URL, use a `<Link>`.
+- **Don't override focus** — the component provides a focus ring that meets accessibility standards; removing it degrades usability.
 - **Don't override `cursor`** — the component sets `not-allowed` on disabled to communicate unavailability; removing it degrades usability.
-- **Don't nest interactive elements inside `Button`** — the component renders a `<button>` element; placing another button or link inside it is invalid HTML.
-- **Don't add `onClick` for non-action use cases** — use `onPress` (React Aria's pointer-agnostic handler) so the callback fires correctly for mouse, touch, and keyboard activation.
+- **Don't nest interactive elements inside `Button`** — the component renders a `<button>` element; placing another button or link inside it is not accessibile.

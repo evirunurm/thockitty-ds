@@ -19,7 +19,7 @@ export const Default: Story = {
 export const Disabled: Story = {
 	args: {
 		children: 'disabled',
-		isDisabled: true,
+		disabled: true,
 	},
 }
 
@@ -39,7 +39,7 @@ export const OnWhiteDisabled: Story = {
 	args: {
 		children: 'disabled',
 		variant: 'on-white',
-		isDisabled: true,
+		disabled: true,
 	},
 	globals: {
 		backgrounds: {
