@@ -24,7 +24,7 @@ const config: StorybookConfig = {
 			if (rule?.test instanceof RegExp && rule.test.test('test.css')) {
 				for (const use of rule.use ?? []) {
 					if (typeof use?.loader === 'string' && use.loader.includes('css-loader')) {
-						use.options = { ...use.options, modules: { auto: true, namedExport: false } }
+						use.options = { ...use.options, modules: { auto: true, namedExport: false, exportLocalsConvention: 'as-is' } }
 					}
 				}
 			}
