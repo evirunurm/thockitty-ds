@@ -14,6 +14,8 @@ export interface ButtonProps {
 	'aria-describedby'?: string
 	/** @default 'on-black' */
 	variant?: 'on-black' | 'on-white'
+	/** @default 'medium' */
+	size?: 'small' | 'medium' | 'large'
 	className?: string
 	style?: React.CSSProperties
 }
@@ -26,6 +28,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 		const {
 			disabled,
 			variant = 'on-black',
+			size = 'medium',
 			children,
 			className,
 			style,
@@ -42,6 +45,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 				className={cx(
 					styles.button,
 					variant && styles[variant],
+					styles[size],
 					className
 				)}
 				style={style}

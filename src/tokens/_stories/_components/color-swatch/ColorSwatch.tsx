@@ -42,6 +42,7 @@ export const ColorSwatch = ({ color }: ColorSwatchParams) => {
 				display: 'flex',
 				flexDirection: 'column',
 				alignItems: 'center',
+				gap: '16px',
 			}}
 		>
 			<div

@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { Button } from '../../../../components/Button'
-import styles from './TokenButton.module.css'
 
 type TokenButtonParams = {
 	value: string
@@ -18,8 +17,9 @@ export const TokenButton = ({ value }: TokenButtonParams) => {
 
 	return (
 		<Button
-			onClick={handleCopy}
-			className={styles.button}
+			size="small"
+			onPress={handleCopy}
+			variant="on-white"
 			aria-title="Copy CSS variable name"
 		>
 			{copied ? 'Copied!' : value}
