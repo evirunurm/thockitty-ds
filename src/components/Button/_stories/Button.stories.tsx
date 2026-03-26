@@ -35,6 +35,20 @@ export const OnWhite: Story = {
 	},
 }
 
+export const Small: Story = {
+	args: {
+		children: 'button',
+		size: 'small',
+	},
+}
+
+export const Large: Story = {
+	args: {
+		children: 'button',
+		size: 'large',
+	},
+}
+
 export const OnWhiteDisabled: Story = {
 	args: {
 		children: 'disabled',

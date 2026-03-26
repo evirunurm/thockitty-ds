@@ -7,12 +7,8 @@
 	overflow: hidden;
 
 	/* Typography */
-	font: var(--foundation-typography-styles-body-body-mono-small);
 	white-space: nowrap;
 	color: var(--foundation-color-base-white);
-
-	/* Spacing */
-	padding: var(--foundation-space-002) var(--foundation-space-004);
 
 	/* Fill-sweep via background trick */
 	background-color: var(--foundation-color-base-black);
@@ -125,6 +121,22 @@
 .button:disabled::before,
 .button:disabled::after {
 	color: var(--foundation-color-gray-800);
+}
+
+/* ══ Sizes ══════════════════════════════════════════════════ */
+.small {
+	font: var(--foundation-typography-styles-body-caption-mono);
+	padding: var(--foundation-space-001) var(--foundation-space-003);
+}
+
+.medium {
+	font: var(--foundation-typography-styles-body-body-mono-small);
+	padding: var(--foundation-space-002) var(--foundation-space-004);
+}
+
+.large {
+	font: var(--foundation-typography-styles-body-body-mono);
+	padding: var(--foundation-space-003) var(--foundation-space-005);
 }
 
 /* ══ on-black variant ════════════════════════════════ */

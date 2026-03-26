@@ -30,19 +30,33 @@ function getLabel(path: string): string {
 export const SpacingToken = ({ token }: SpacingTokenParams) => {
 	return (
 		<div className={styles.card}>
-			<div className={styles.stage} style={{ backgroundColor: COLORS.gray100 }}>
+			<div
+				className={styles.stage}
+				style={{ backgroundColor: COLORS.gray100 }}
+			>
 				<div
 					className={styles.bar}
 					style={{ width: token.value, backgroundColor: '#e65f89' }}
 				/>
 			</div>
 			<div className={styles.meta}>
-				<span style={{ ...CAPTION_MONO, fontWeight: 500, color: COLORS.baseBlack }}>
+				<span
+					style={{
+						...CAPTION_MONO,
+						fontWeight: 500,
+						color: COLORS.baseBlack,
+					}}
+				>
 					{getLabel(token.path)}
 				</span>
-				<span style={{ ...CAPTION_MONO, color: COLORS.gray500 }}>{token.value}</span>
+				<span style={{ ...CAPTION_MONO, color: COLORS.gray500 }}>
+					{token.value}
+				</span>
 			</div>
-			<div className={styles.divider} style={{ backgroundColor: COLORS.gray300 }} />
+			<div
+				className={styles.divider}
+				style={{ backgroundColor: COLORS.gray300 }}
+			/>
 			<TokenButton value={token.cssVariable} />
 		</div>
 	)
