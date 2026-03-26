@@ -1,0 +1,49 @@
+import { Meta, Canvas, ArgTypes, Story } from '@storybook/addon-docs/blocks'
+import * as ButtonStories from '../_stories/Button.stories'
+
+<Meta of={ButtonStories} name="Docs" />
+
+# Button
+
+A terminal-styled action trigger with a fill-sweep hover animation.
+
+## When to use
+
+Use `Button` for any action that the user can invoke: form submissions, modal confirmations, navigation triggers, or standalone CTAs.
+
+Choose the variant that matches the surrounding surface.
+
+## Variants
+
+### on-black
+
+<Canvas of={ButtonStories.Default} />
+
+### on-black disabled
+
+<Canvas of={ButtonStories.Disabled} />
+
+### on-white
+
+<Canvas of={ButtonStories.OnWhite} />
+
+### on-white disabled
+
+<Canvas of={ButtonStories.OnWhiteDisabled} />
+
+## Properties
+
+<ArgTypes of={ButtonStories} />
+
+## Do's and don'ts
+
+### Do
+
+- **Match the variant to the background** — use `on-white` when the button sits on a light surface so the hover fill inverts correctly.
+
+### Don't
+
+- **Don't use it for navigation** — if the action routes to a new URL, use a `<Link>`.
+- **Don't override focus** — the component provides a focus ring that meets accessibility standards; removing it degrades usability.
+- **Don't override `cursor`** — the component sets `not-allowed` on disabled to communicate unavailability; removing it degrades usability.
+- **Don't nest interactive elements inside `Button`** — the component renders a `<button>` element; placing another button or link inside it is not accessibile.

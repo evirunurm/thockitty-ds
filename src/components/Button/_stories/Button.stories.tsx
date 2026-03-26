@@ -4,7 +4,7 @@ import { Button } from '../Button'
 const meta: Meta<typeof Button> = {
 	title: 'Components/Button',
 	component: Button,
-	tags: ['autodocs'],
+	tags: ['in-progress'],
 }
 
 export default meta
@@ -19,7 +19,7 @@ export const Default: Story = {
 export const Disabled: Story = {
 	args: {
 		children: 'disabled',
-		isDisabled: true,
+		disabled: true,
 	},
 }
 
@@ -29,21 +29,21 @@ export const OnWhite: Story = {
 		variant: 'on-white',
 	},
 	globals: {
-        backgrounds: {
-            value: "light"
-        }
-    },
+		backgrounds: {
+			value: 'light',
+		},
+	},
 }
 
 export const OnWhiteDisabled: Story = {
 	args: {
 		children: 'disabled',
 		variant: 'on-white',
-		isDisabled: true,
+		disabled: true,
 	},
 	globals: {
-        backgrounds: {
-            value: "light"
-        }
-    },
+		backgrounds: {
+			value: 'light',
+		},
+	},
 }

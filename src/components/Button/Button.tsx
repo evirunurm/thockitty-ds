@@ -4,10 +4,16 @@ import type { AriaButtonProps } from '@react-aria/button'
 import cx from 'classnames'
 import styles from './Button.module.css'
 
-type ButtonVariant = 'on-black' | 'on-white'
-
-export interface ButtonProps extends AriaButtonProps<'button'> {
-	variant?: ButtonVariant
+export interface ButtonProps {
+	children?: React.ReactNode
+	onPress?: () => void
+	disabled?: boolean
+	type?: 'button' | 'submit' | 'reset'
+	'aria-label'?: string
+	'aria-labelledby'?: string
+	'aria-describedby'?: string
+	/** @default 'on-black' */
+	variant?: 'on-black' | 'on-white'
 	className?: string
 	style?: React.CSSProperties
 }
@@ -17,8 +23,17 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 		const localRef = useRef<HTMLButtonElement>(null)
 		const ref =
 			(forwardedRef as React.RefObject<HTMLButtonElement>) ?? localRef
-		const { buttonProps } = useButton(props, ref)
-		const { variant = 'on-black', children, className, style } = props
+		const {
+			disabled,
+			variant = 'on-black',
+			children,
+			className,
+			style,
+		} = props
+		const { buttonProps } = useButton(
+			{ ...props, isDisabled: disabled } as AriaButtonProps<'button'>,
+			ref
+		)
 
 		return (
 			<button
