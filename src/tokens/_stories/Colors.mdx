@@ -10,12 +10,18 @@ export const groups = tokens.reduce((acc, token) => {
 	return acc
 }, {})
 
+export const groupDescriptions = {
+	base: 'Pure black and white anchors used for text, backgrounds, and high-contrast surfaces.',
+	gray: 'A neutral scale from near-white to near-black for borders, backgrounds, and secondary text.',
+	red: 'Accent hue used for interactive highlights, focus rings, and brand emphasis.',
+}
+
 <Meta title="Tokens/Colors" />
 
 <Unstyled>
 <DocPage>
 	{Object.entries(groups).map(([group, groupTokens]) => (
-		<Section key={group} title={group} bordered padded>
+		<Section key={group} title={group} description={groupDescriptions[group]} bordered padded>
 			<div
 				style={{
 					display: 'grid',
