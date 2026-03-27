@@ -1,30 +1,31 @@
-.card {
-	display: flex;
-	flex-direction: column;
-	gap: 8px;
-}
-
-.stage {
-	height: 96px;
-	border-radius: 8px;
+.row {
 	display: flex;
 	align-items: center;
-	padding: 0 12px;
+	gap: 16px;
+	padding: 10px 0;
+	border-bottom: 1px solid var(--foundation-color-gray-100);
+}
+
+.label {
+	width: 32px;
+	flex-shrink: 0;
+}
+
+.barTrack {
+	flex: 1;
+	display: flex;
+	align-items: center;
 }
 
 .bar {
-	height: 16px;
-	border-radius: 2px;
+	height: 6px;
+	background-color: #e65f89;
+	border-radius: 1px;
 	min-width: 4px;
 }
 
-.meta {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	padding: 0 2px;
-}
-
-.divider {
-	height: 1px;
+.value {
+	width: 36px;
+	text-align: right;
+	flex-shrink: 0;
 }

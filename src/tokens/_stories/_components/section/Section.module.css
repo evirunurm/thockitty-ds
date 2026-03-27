@@ -1,5 +1,32 @@
 .section {
 	display: flex;
 	flex-direction: column;
-	gap: 2rem;
+	gap: var(--foundation-space-010);
+}
+
+.bordered {
+	border: 1px dashed var(--foundation-color-gray-300);
+	padding: var(--foundation-space-001) var(--foundation-space-006);
+}
+
+.padded {
+	padding-top: var(--foundation-space-006);
+	padding-bottom: var(--foundation-space-006);
+}
+
+.header {
+	display: flex;
+	flex-direction: column;
+	gap: var(--foundation-space-008);
+}
+
+.header h2 {
+	margin: 0;
+	font: var(--foundation-typography-styles-headings-heading-mono-01);
+}
+
+.description {
+	margin: 0;
+	font: var(--foundation-typography-styles-body-body);
+	color: var(--foundation-color-gray-500);
 }

@@ -7,6 +7,10 @@
 	border-bottom: 1px solid var(--foundation-color-gray-100);
 }
 
+.card:last-child {
+	border-bottom: none;
+}
+
 .sample {
 	flex: 1;
 	display: flex;
@@ -38,16 +42,38 @@
 	padding-left: 24px;
 }
 
-.table {
-	border-collapse: collapse;
+.tokenList {
+	display: flex;
+	flex-direction: column;
+	gap: 3px;
 	width: 100%;
 }
 
-.tableLabel {
-	padding: 2px 12px 2px 0;
-	white-space: nowrap;
+.tokenRow {
+	display: flex;
+	align-items: center;
+	gap: 6px;
 }
 
-.tableValue {
-	padding: 2px 0;
+.tokenKey {
+	white-space: nowrap;
+	flex-shrink: 0;
+	min-width: 96px;
+}
+
+.tokenSep {
+	flex: 1;
+	height: 1px;
+	background-image: repeating-linear-gradient(
+		to right,
+		var(--foundation-color-gray-300) 0,
+		var(--foundation-color-gray-300) 2px,
+		transparent 2px,
+		transparent 6px
+	);
+}
+
+.tokenValue {
+	white-space: nowrap;
+	flex-shrink: 0;
 }
