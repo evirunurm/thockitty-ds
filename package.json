@@ -18,7 +18,12 @@
 			"import": "./dist/index.mjs",
 			"require": "./dist/index.js"
 		},
-		"./styles": "./dist/index.css"
+		"./styles": "./dist/index.css",
+		"./satori": {
+			"types": "./dist/satori/index.d.ts",
+			"import": "./dist/satori/index.js",
+			"require": "./dist/satori/index.cjs"
+		}
 	},
 	"alias": {
 		"react": false,
