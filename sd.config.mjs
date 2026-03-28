@@ -14,6 +14,76 @@ StyleDictionary.registerFormat({
 	},
 })
 
+function buildSatoriMaps(dictionary) {
+	const typographyMap = Object.fromEntries(
+		dictionary.allTokens
+			.filter((token) => token.$type === 'typography')
+			.map((token) => {
+				const raw = token.original.$value ?? token.value
+				return [
+					`--${token.path.join('-').toLowerCase()}`,
+					{
+						fontFamily: raw.fontFamily,
+						fontSize: parseInt(raw.fontSize, 10),
+						fontWeight: raw.fontWeight,
+						fontStyle: raw.fontStyle,
+					},
+				]
+			})
+	)
+
+	const colorsMap = Object.fromEntries(
+		dictionary.allTokens
+			.filter((token) => token.$type === 'color')
+			.map((token) => [
+				`--${token.path.join('-').toLowerCase()}`,
+				token.$value ?? token.value ?? token.original.$value,
+			])
+	)
+
+	return { typographyMap, colorsMap }
+}
+
+StyleDictionary.registerFormat({
+	name: 'satori/esm',
+	format: ({ dictionary }) => {
+		const { typographyMap, colorsMap } = buildSatoriMaps(dictionary)
+		return (
+			`export const typography = ${JSON.stringify(typographyMap, null, '\t')};\n` +
+			`export const colors = ${JSON.stringify(colorsMap, null, '\t')};\n`
+		)
+	},
+})
+
+StyleDictionary.registerFormat({
+	name: 'satori/cjs',
+	format: ({ dictionary }) => {
+		const { typographyMap, colorsMap } = buildSatoriMaps(dictionary)
+		return (
+			`"use strict";\n` +
+			`Object.defineProperty(exports, "__esModule", { value: true });\n` +
+			`exports.typography = ${JSON.stringify(typographyMap, null, '\t')};\n` +
+			`exports.colors = ${JSON.stringify(colorsMap, null, '\t')};\n`
+		)
+	},
+})
+
+StyleDictionary.registerFormat({
+	name: 'satori/dts',
+	format: () => {
+		return (
+			`export type SatoriTypographyStyle = {\n` +
+			`\tfontFamily: string;\n` +
+			`\tfontSize: number;\n` +
+			`\tfontWeight: number;\n` +
+			`\tfontStyle: string;\n` +
+			`};\n` +
+			`export declare const typography: Record<string, SatoriTypographyStyle>;\n` +
+			`export declare const colors: Record<string, string>;\n`
+		)
+	},
+})
+
 StyleDictionary.registerFormat({
 	name: 'docs/tokens-typography',
 	format: ({ dictionary }) => {
@@ -72,6 +142,24 @@ export default {
 					destination: 'typography.ts',
 					format: 'docs/tokens-typography',
 					filter: (token) => token.$type === 'typography',
+				},
+			],
+		},
+		satori: {
+			transformGroup: 'js',
+			buildPath: 'dist/satori/',
+			files: [
+				{
+					destination: 'index.js',
+					format: 'satori/esm',
+				},
+				{
+					destination: 'index.cjs',
+					format: 'satori/cjs',
+				},
+				{
+					destination: 'index.d.ts',
+					format: 'satori/dts',
 				},
 			],
 		},
