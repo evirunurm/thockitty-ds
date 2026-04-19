@@ -6,3 +6,8 @@ tokens/ts/
 
 *storybook.log
 settings.local.json
+
+# Local Netlify folder
+.netlify
+
+netlify/functions/metadata.json
