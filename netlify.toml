@@ -1,5 +1,5 @@
 [build]
-  command = "npm run build-storybook"
+  command = "npm run build-mcp-metadata && npm run build-storybook"
   publish = "storybook-static"
 
 [[redirects]]

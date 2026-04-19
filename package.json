@@ -29,6 +29,7 @@
 		"build": "npx style-dictionary build --config sd.config.mjs && parcel build --target main && parcel build --target module --target types",
 		"storybook": "storybook dev -p 6006",
 		"build-storybook": "storybook build",
+		"build-mcp-metadata": "tsx scripts/build-mcp-metadata.ts",
 		"format:check": "npx prettier . ",
 		"format": "npx prettier . --write",
 		"build-tokens": "style-dictionary build --config sd.config.mjs"
@@ -66,6 +67,7 @@
 		"storybook": "^10.3.3",
 		"storybook-addon-designs": "^6.3.1",
 		"storybook-addon-pseudo-states": "^10.3.3",
+		"@storybook/mcp": "^0.6.1",
 		"storybook-addon-tag-badges": "^3.1.0",
 		"style-dictionary": "^5.3.0",
 		"tsx": "^4.21.0",
@@ -75,7 +77,6 @@
 	"dependencies": {
 		"@modelcontextprotocol/sdk": "^1.29.0",
 		"@react-aria/button": "^3.14.4",
-		"@storybook/mcp": "^0.6.1",
 		"classnames": "^2.5.1"
 	}
 }
