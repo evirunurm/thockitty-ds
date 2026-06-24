@@ -1,5 +1,16 @@
 [build]
-  command = "npm run build-mcp-metadata && npm run build-storybook"
+  command = "pnpm run build-mcp-metadata && pnpm run build-storybook"
+  publish = "storybook-static"
+
+[functions]
+  node_bundler = "esbuild"
+  included_files = ["netlify/functions/metadata.json"]
+
+[dev]
+  command = "pnpm run storybook"
+  targetPort = 6006
+  port = 8888
+  framework = "#custom"
   publish = "storybook-static"
 
 [[redirects]]

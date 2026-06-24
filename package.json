@@ -26,12 +26,13 @@
 		"react/jsx-runtime": false
 	},
 	"scripts": {
-		"build": "npx style-dictionary build --config sd.config.mjs && parcel build --target main && parcel build --target module --target types",
+		"build": "style-dictionary build --config sd.config.mjs && parcel build --target main && parcel build --target module --target types",
 		"storybook": "storybook dev -p 6006",
 		"build-storybook": "storybook build",
 		"build-mcp-metadata": "tsx scripts/build-mcp-metadata.ts",
-		"format:check": "npx prettier . ",
-		"format": "npx prettier . --write",
+		"mcp:dev": "netlify dev",
+		"format:check": "prettier . ",
+		"format": "prettier . --write",
 		"build-tokens": "style-dictionary build --config sd.config.mjs"
 	},
 	"peerDependencies": {
@@ -50,12 +51,14 @@
 	},
 	"license": "UNLICENSED",
 	"devDependencies": {
+		"@modelcontextprotocol/inspector": "^0.22.0",
 		"@parcel/packager-ts": "^2.16.4",
 		"@parcel/transformer-typescript-types": "^2.16.4",
 		"@storybook/addon-a11y": "^10.3.3",
 		"@storybook/addon-docs": "^10.3.3",
 		"@storybook/addon-mcp": "^0.4.2",
 		"@storybook/addon-webpack5-compiler-swc": "^4.0.2",
+		"@storybook/mcp": "^0.6.1",
 		"@storybook/react": "^10.3.3",
 		"@storybook/react-webpack5": "^10.3.3",
 		"@types/react": "^19.2.14",
@@ -67,7 +70,6 @@
 		"storybook": "^10.3.3",
 		"storybook-addon-designs": "^6.3.1",
 		"storybook-addon-pseudo-states": "^10.3.3",
-		"@storybook/mcp": "^0.6.1",
 		"storybook-addon-tag-badges": "^3.1.0",
 		"style-dictionary": "^5.3.0",
 		"tsx": "^4.21.0",

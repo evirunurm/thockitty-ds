@@ -57,6 +57,76 @@ npm run build
 npm run storybook
 ```
 
+### MCP Server
+
+The library exposes an MCP (Model Context Protocol) server that provides programmatic access to component documentation, props, and design tokens.
+
+#### Build Metadata
+
+The MCP server requires pre-built metadata about components and tokens:
+
+```bash
+npm run build-mcp-metadata
+```
+
+This generates `netlify/functions/metadata.json` by analyzing:
+- Component props from TypeScript interfaces
+- Story variants from Storybook stories
+- MDX documentation files
+- Design tokens (colors, spacing, typography)
+
+#### Local Development
+
+Run the local MCP server for testing:
+
+```bash
+npm run mcp:dev
+```
+
+This starts a stdio-based MCP server that can be tested with the MCP Inspector.
+
+#### Testing with MCP Inspector
+
+The MCP Inspector provides a UI for testing MCP servers:
+
+```bash
+# Install globally
+npm install -g @modelcontextprotocol/inspector
+
+# Run from project root
+cd thockitty-ds
+mcp-inspector
+```
+
+In the inspector UI, add a new server:
+
+- **Command:** `node`
+- **Args:** `--import`, `tsx/esm`, `scripts/mcp-local-server.ts`
+
+Or run with inline arguments:
+
+```bash
+mcp-inspector --command node --args "--import" --args "tsx/esm" --args "scripts/mcp-local-server.ts"
+```
+
+#### Available MCP Tools
+
+Once connected, the following tools are available:
+
+| Tool | Description |
+|------|-------------|
+| `list-components` | Returns all available component IDs |
+| `get-component` | Returns props definition for a component |
+| `get-component-stories` | Returns stories/variants for a component |
+| `get-component-docs` | Returns MDX documentation for a component |
+| `get-color-tokens` | Returns all color design tokens |
+| `get-spacing-tokens` | Returns all spacing design tokens |
+| `get-typography-tokens` | Returns all typography design tokens |
+
+#### Production
+
+In production (Netlify), the MCP server runs as an HTTP function at `/.netlify/functions/mcp`. It uses the Web Standard Streamable HTTP transport for compatibility with MCP clients.
+
 ## Tech stack
 
 - **TypeScript** for type safety
