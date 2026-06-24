@@ -1,18 +1,26 @@
 import * as ts from 'typescript'
 import * as fs from 'fs'
 import * as path from 'path'
+import { fileURLToPath, pathToFileURL } from 'url'
 
-const root = path.resolve(__dirname, '..')
-const componentsDir = path.join(root, 'src', 'components')
-const outputPath = path.join(root, 'netlify', 'functions', 'metadata.json')
+// __dirname is defined under tsx (CJS shim) but undefined under ESM loaders
+// (e.g. Storybook's preset loader). Resolve a portable module dir either way.
+const __dir =
+	typeof __dirname !== 'undefined' && __dirname
+		? __dirname
+		: path.dirname(fileURLToPath(import.meta.url))
+
+export const root = path.resolve(__dir, '..')
+export const componentsDir = path.join(root, 'src', 'components')
+export const outputPath = path.join(root, 'netlify', 'functions', 'metadata.json')
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
 
-function readFile(filePath: string): string {
+export function readFile(filePath: string): string {
 	return fs.readFileSync(filePath, 'utf-8')
 }
 
-function createProgram(filePaths: string[]): ts.Program {
+export function createProgram(filePaths: string[]): ts.Program {
 	return ts.createProgram(filePaths, {
 		target: ts.ScriptTarget.ES2020,
 		module: ts.ModuleKind.ESNext,
@@ -24,7 +32,7 @@ function createProgram(filePaths: string[]): ts.Program {
 
 // ── Props extraction ──────────────────────────────────────────────────────────
 
-interface PropDef {
+export interface PropDef {
 	name: string
 	type: string
 	default: string | null
@@ -32,23 +40,23 @@ interface PropDef {
 	description: string | null
 }
 
-function getJsDocTagValue(symbol: ts.Symbol, tagName: string): string | null {
+export function getJsDocTagValue(symbol: ts.Symbol, tagName: string): string | null {
 	const jsDocs = symbol.getJsDocTags()
 	const tag = jsDocs.find((t) => t.name === tagName)
 	if (!tag || !tag.text) return null
 	return tag.text.map((part) => part.text).join('').trim() || null
 }
 
-function getJsDocComment(symbol: ts.Symbol, checker: ts.TypeChecker): string | null {
+export function getJsDocComment(symbol: ts.Symbol, checker: ts.TypeChecker): string | null {
 	const comment = ts.displayPartsToString(symbol.getDocumentationComment(checker)).trim()
 	return comment || null
 }
 
-function extractTypeString(type: ts.Type, checker: ts.TypeChecker): string {
+export function extractTypeString(type: ts.Type, checker: ts.TypeChecker): string {
 	return checker.typeToString(type)
 }
 
-function extractProps(componentFile: string): PropDef[] {
+export function extractProps(componentFile: string): PropDef[] {
 	const program = createProgram([componentFile])
 	const checker = program.getTypeChecker()
 	const sourceFile = program.getSourceFile(componentFile)
@@ -91,12 +99,12 @@ function extractProps(componentFile: string): PropDef[] {
 
 // ── Stories extraction ────────────────────────────────────────────────────────
 
-interface StoryDef {
+export interface StoryDef {
 	id: string
 	args: Record<string, unknown>
 }
 
-function extractArgs(node: ts.ObjectLiteralExpression, sourceFile: ts.SourceFile): Record<string, unknown> {
+export function extractArgs(node: ts.ObjectLiteralExpression, sourceFile: ts.SourceFile): Record<string, unknown> {
 	const result: Record<string, unknown> = {}
 	for (const prop of node.properties) {
 		if (!ts.isPropertyAssignment(prop)) continue
@@ -112,7 +120,7 @@ function extractArgs(node: ts.ObjectLiteralExpression, sourceFile: ts.SourceFile
 	return result
 }
 
-function extractStories(storiesFile: string): StoryDef[] {
+export function extractStories(storiesFile: string): StoryDef[] {
 	const program = createProgram([storiesFile])
 	const sourceFile = program.getSourceFile(storiesFile)
 	if (!sourceFile) return []
@@ -149,12 +157,12 @@ function extractStories(storiesFile: string): StoryDef[] {
 
 // ── Token extraction ──────────────────────────────────────────────────────────
 
-interface SimpleToken {
+export interface SimpleToken {
 	cssVariable: string
 	value: string
 }
 
-function getPropKey(prop: ts.ObjectLiteralElementLike, sourceFile: ts.SourceFile): string {
+export function getPropKey(prop: ts.ObjectLiteralElementLike, sourceFile: ts.SourceFile): string {
 	if (ts.isPropertyAssignment(prop)) {
 		const name = prop.name
 		if (ts.isStringLiteral(name)) return name.text
@@ -164,7 +172,7 @@ function getPropKey(prop: ts.ObjectLiteralElementLike, sourceFile: ts.SourceFile
 	return ''
 }
 
-function extractSimpleTokens(tokenFile: string): SimpleToken[] {
+export function extractSimpleTokens(tokenFile: string): SimpleToken[] {
 	const program = createProgram([tokenFile])
 	const sourceFile = program.getSourceFile(tokenFile)
 	if (!sourceFile) return []
@@ -195,7 +203,7 @@ function extractSimpleTokens(tokenFile: string): SimpleToken[] {
 	return []
 }
 
-function extractTypographyTokens(tokenFile: string): SimpleToken[] {
+export function extractTypographyTokens(tokenFile: string): SimpleToken[] {
 	const program = createProgram([tokenFile])
 	const sourceFile = program.getSourceFile(tokenFile)
 	if (!sourceFile) return []
@@ -237,13 +245,13 @@ function extractTypographyTokens(tokenFile: string): SimpleToken[] {
 
 // ── Main ──────────────────────────────────────────────────────────────────────
 
-interface ComponentMeta {
+export interface ComponentMeta {
 	props: PropDef[]
 	stories: StoryDef[]
 	mdx: string
 }
 
-interface Metadata {
+export interface Metadata {
 	version: string
 	components: Record<string, ComponentMeta>
 	tokens: {
@@ -301,4 +309,8 @@ function main() {
 	console.log(`  ${metadata.tokens.typography.length} typography tokens`)
 }
 
-main()
+// Only run main when invoked directly (e.g. `tsx scripts/build-mcp-metadata.ts`),
+// not when imported (e.g. by .storybook/thockitty-mcp-preset/preset.ts).
+const invokedDirectly =
+	process.argv[1] && pathToFileURL(path.resolve(process.argv[1])).href === import.meta.url
+if (invokedDirectly) main()

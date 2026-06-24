@@ -4,7 +4,7 @@ import { Typography } from '../Typography'
 const meta: Meta<typeof Typography> = {
 	title: 'Components/Typography',
 	component: Typography,
-	tags: [],
+	tags: ['manifest'],
 	args: {
 		color: 'white',
 	},
