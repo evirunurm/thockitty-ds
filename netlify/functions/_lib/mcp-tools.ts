@@ -1,6 +1,6 @@
 import type { Metadata } from '../../../scripts/build-mcp-metadata'
-import type { ToolConfig, ComponentIdInput } from './mcp-types'
-import { ComponentIdSchema } from './mcp-types'
+import type { ToolConfig, ComponentIdInput, TokenCategoryInput } from './mcp-types'
+import { ComponentIdSchema, TokenCategorySchema } from './mcp-types'
 
 export function componentError(componentId: string): string {
 	return `Component '${componentId}' not found. Call list-components to see available options.`
@@ -28,14 +28,15 @@ export const tools: ToolConfig[] = [
 		description: 'Returns props definition for a component',
 		schema: ComponentIdSchema,
 		handler: (input, metadata) => {
-			const comp = metadata.components[input!.componentId.toLowerCase()]
+			const { componentId } = input as ComponentIdInput
+			const comp = metadata.components[componentId.toLowerCase()]
 			if (!comp) {
 				return {
 					isError: true,
 					content: [
 						{
 							type: 'text' as const,
-							text: componentError(input!.componentId),
+							text: componentError(componentId),
 						},
 					],
 				}
@@ -46,7 +47,7 @@ export const tools: ToolConfig[] = [
 						type: 'text' as const,
 						text: JSON.stringify({
 							version: metadata.version,
-							id: input!.componentId,
+							id: componentId,
 							props: comp.props,
 						}),
 					},
@@ -59,14 +60,15 @@ export const tools: ToolConfig[] = [
 		description: 'Returns stories/variants for a component',
 		schema: ComponentIdSchema,
 		handler: (input, metadata) => {
-			const comp = metadata.components[input!.componentId.toLowerCase()]
+			const { componentId } = input as ComponentIdInput
+			const comp = metadata.components[componentId.toLowerCase()]
 			if (!comp) {
 				return {
 					isError: true,
 					content: [
 						{
 							type: 'text' as const,
-							text: componentError(input!.componentId),
+							text: componentError(componentId),
 						},
 					],
 				}
@@ -77,7 +79,7 @@ export const tools: ToolConfig[] = [
 						type: 'text' as const,
 						text: JSON.stringify({
 							version: metadata.version,
-							id: input!.componentId,
+							id: componentId,
 							stories: comp.stories,
 						}),
 					},
@@ -90,14 +92,15 @@ export const tools: ToolConfig[] = [
 		description: 'Returns raw MDX documentation string for a component',
 		schema: ComponentIdSchema,
 		handler: (input, metadata) => {
-			const comp = metadata.components[input!.componentId.toLowerCase()]
+			const { componentId } = input as ComponentIdInput
+			const comp = metadata.components[componentId.toLowerCase()]
 			if (!comp) {
 				return {
 					isError: true,
 					content: [
 						{
 							type: 'text' as const,
-							text: componentError(input!.componentId),
+							text: componentError(componentId),
 						},
 					],
 				}
@@ -108,7 +111,7 @@ export const tools: ToolConfig[] = [
 						type: 'text' as const,
 						text: JSON.stringify({
 							version: metadata.version,
-							id: input!.componentId,
+							id: componentId,
 							mdx: comp.mdx,
 						}),
 					},
@@ -117,51 +120,35 @@ export const tools: ToolConfig[] = [
 		},
 	},
 	{
-		name: 'get-color-tokens',
-		description: 'Returns all color design tokens',
-		schema: undefined,
-		handler: (_input, metadata) => ({
-			content: [
-				{
-					type: 'text' as const,
-					text: JSON.stringify({
-						version: metadata.version,
-						tokens: metadata.tokens.color,
-					}),
-				},
-			],
-		}),
-	},
-	{
-		name: 'get-spacing-tokens',
-		description: 'Returns all spacing design tokens',
-		schema: undefined,
-		handler: (_input, metadata) => ({
-			content: [
-				{
-					type: 'text' as const,
-					text: JSON.stringify({
-						version: metadata.version,
-						tokens: metadata.tokens.spacing,
-					}),
-				},
-			],
-		}),
-	},
-	{
-		name: 'get-typography-tokens',
-		description: 'Returns all typography design tokens',
-		schema: undefined,
-		handler: (_input, metadata) => ({
-			content: [
-				{
-					type: 'text' as const,
-					text: JSON.stringify({
-						version: metadata.version,
-						tokens: metadata.tokens.typography,
-					}),
-				},
-			],
-		}),
+		name: 'get-tokens',
+		description: 'Returns design tokens for a specific category',
+		schema: TokenCategorySchema,
+		handler: (input, metadata) => {
+			const category = (input as TokenCategoryInput).category
+			const tokens = metadata.tokens[category]
+			if (!tokens) {
+				return {
+					isError: true,
+					content: [
+						{
+							type: 'text' as const,
+							text: `Invalid category '${category}'. Valid categories are: color, spacing, typography.`,
+						},
+					],
+				}
+			}
+			return {
+				content: [
+					{
+						type: 'text' as const,
+						text: JSON.stringify({
+							version: metadata.version,
+							category,
+							tokens,
+						}),
+					},
+				],
+			}
+		},
 	},
 ]
