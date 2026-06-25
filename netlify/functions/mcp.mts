@@ -197,6 +197,22 @@ export default async (req: Request): Promise<Response> => {
 		)
 	}
 
+	// Friendly response for browser visitors (not MCP clients)
+	if (req.method === 'GET' && !req.headers.get('accept')?.includes('text/event-stream')) {
+		return new Response(
+			JSON.stringify({
+				name: 'thockitty-ds MCP Server',
+				version: metadata.version,
+				components: Object.keys(metadata.components),
+				tokenCategories: Object.keys(metadata.tokens),
+				endpoint: '/mcp',
+				protocol: 'MCP Streamable HTTP',
+				status: 'ok',
+			}),
+			{ status: 200, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+		)
+	}
+
 	const mcpServer = createMcpServer(metadata)
 	const transport = new WebStandardStreamableHTTPServerTransport({
 		sessionIdGenerator: undefined,
