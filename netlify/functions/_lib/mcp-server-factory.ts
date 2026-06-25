@@ -1,7 +1,7 @@
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js'
 import type { Metadata } from '../../../scripts/build-mcp-metadata'
 import { tools } from './mcp-tools'
-import type { ComponentIdInput } from './mcp-types'
+import type { ComponentIdInput, TokenCategoryInput } from './mcp-types'
 
 /**
  * Shared MCP server factory used by BOTH:
@@ -25,7 +25,7 @@ export function createThockittyMcpServer(metadata: Metadata): McpServer {
 					description: tool.description,
 					inputSchema: tool.schema as any,
 				},
-				(input: ComponentIdInput) => tool.handler(input, metadata)
+				(input: ComponentIdInput | TokenCategoryInput) => tool.handler(input, metadata)
 			)
 		} else {
 			server.tool(tool.name, tool.description, () =>
