@@ -32,14 +32,23 @@ export const tools: ToolConfig[] = [
 			if (!comp) {
 				return {
 					isError: true,
-					content: [{ type: 'text' as const, text: componentError(input!.componentId) }],
+					content: [
+						{
+							type: 'text' as const,
+							text: componentError(input!.componentId),
+						},
+					],
 				}
 			}
 			return {
 				content: [
 					{
 						type: 'text' as const,
-						text: JSON.stringify({ version: metadata.version, id: input!.componentId, props: comp.props }),
+						text: JSON.stringify({
+							version: metadata.version,
+							id: input!.componentId,
+							props: comp.props,
+						}),
 					},
 				],
 			}
@@ -54,14 +63,23 @@ export const tools: ToolConfig[] = [
 			if (!comp) {
 				return {
 					isError: true,
-					content: [{ type: 'text' as const, text: componentError(input!.componentId) }],
+					content: [
+						{
+							type: 'text' as const,
+							text: componentError(input!.componentId),
+						},
+					],
 				}
 			}
 			return {
 				content: [
 					{
 						type: 'text' as const,
-						text: JSON.stringify({ version: metadata.version, id: input!.componentId, stories: comp.stories }),
+						text: JSON.stringify({
+							version: metadata.version,
+							id: input!.componentId,
+							stories: comp.stories,
+						}),
 					},
 				],
 			}
@@ -76,14 +94,23 @@ export const tools: ToolConfig[] = [
 			if (!comp) {
 				return {
 					isError: true,
-					content: [{ type: 'text' as const, text: componentError(input!.componentId) }],
+					content: [
+						{
+							type: 'text' as const,
+							text: componentError(input!.componentId),
+						},
+					],
 				}
 			}
 			return {
 				content: [
 					{
 						type: 'text' as const,
-						text: JSON.stringify({ version: metadata.version, id: input!.componentId, mdx: comp.mdx }),
+						text: JSON.stringify({
+							version: metadata.version,
+							id: input!.componentId,
+							mdx: comp.mdx,
+						}),
 					},
 				],
 			}
@@ -97,7 +124,10 @@ export const tools: ToolConfig[] = [
 			content: [
 				{
 					type: 'text' as const,
-					text: JSON.stringify({ version: metadata.version, tokens: metadata.tokens.color }),
+					text: JSON.stringify({
+						version: metadata.version,
+						tokens: metadata.tokens.color,
+					}),
 				},
 			],
 		}),
@@ -110,7 +140,10 @@ export const tools: ToolConfig[] = [
 			content: [
 				{
 					type: 'text' as const,
-					text: JSON.stringify({ version: metadata.version, tokens: metadata.tokens.spacing }),
+					text: JSON.stringify({
+						version: metadata.version,
+						tokens: metadata.tokens.spacing,
+					}),
 				},
 			],
 		}),
@@ -123,7 +156,10 @@ export const tools: ToolConfig[] = [
 			content: [
 				{
 					type: 'text' as const,
-					text: JSON.stringify({ version: metadata.version, tokens: metadata.tokens.typography }),
+					text: JSON.stringify({
+						version: metadata.version,
+						tokens: metadata.tokens.typography,
+					}),
 				},
 			],
 		}),

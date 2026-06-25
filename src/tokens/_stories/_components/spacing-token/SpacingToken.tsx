@@ -33,14 +33,21 @@ export const SpacingToken = ({ token }: SpacingTokenParams) => {
 		<div className={styles.row}>
 			<span
 				className={styles.label}
-				style={{ ...CAPTION_MONO, fontWeight: 600, color: COLORS.baseBlack }}
+				style={{
+					...CAPTION_MONO,
+					fontWeight: 600,
+					color: COLORS.baseBlack,
+				}}
 			>
 				{label}
 			</span>
 			<div className={styles.barTrack}>
 				<div className={styles.bar} style={{ width: barWidth }} />
 			</div>
-			<span className={styles.value} style={{ ...CAPTION_MONO, color: COLORS.gray500 }}>
+			<span
+				className={styles.value}
+				style={{ ...CAPTION_MONO, color: COLORS.gray500 }}
+			>
 				{token.value}
 			</span>
 			<TokenButton value={token.cssVariable} />

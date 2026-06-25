@@ -30,7 +30,7 @@
 		"storybook": "storybook dev -p 6006",
 		"build-storybook": "storybook build",
 		"build-mcp-metadata": "tsx scripts/build-mcp-metadata.ts",
-		"format:check": "prettier . ",
+		"format:check": "prettier . --check",
 		"format": "prettier . --write",
 		"build-tokens": "style-dictionary build --config sd.config.mjs"
 	},

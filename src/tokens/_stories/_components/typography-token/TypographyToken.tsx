@@ -49,7 +49,10 @@ export const TypographyToken = ({ token }: TypographyTokenParams) => {
 					{label}
 				</span>
 			</div>
-			<div className={styles.divider} style={{ backgroundColor: COLORS.gray300 }} />
+			<div
+				className={styles.divider}
+				style={{ backgroundColor: COLORS.gray300 }}
+			/>
 			<div className={styles.meta}>
 				<div className={styles.tokenList}>
 					{[
@@ -62,14 +65,24 @@ export const TypographyToken = ({ token }: TypographyTokenParams) => {
 						<div key={key} className={styles.tokenRow}>
 							<span
 								className={styles.tokenKey}
-								style={{ ...CAPTION_MONO, fontWeight: 600, color: COLORS.baseBlack }}
+								style={{
+									...CAPTION_MONO,
+									fontWeight: 600,
+									color: COLORS.baseBlack,
+								}}
 							>
 								{key}
 							</span>
-							<span className={styles.tokenSep} aria-hidden="true" />
+							<span
+								className={styles.tokenSep}
+								aria-hidden="true"
+							/>
 							<span
 								className={styles.tokenValue}
-								style={{ ...CAPTION_MONO, color: COLORS.gray500 }}
+								style={{
+									...CAPTION_MONO,
+									color: COLORS.gray500,
+								}}
 							>
 								{value}
 							</span>

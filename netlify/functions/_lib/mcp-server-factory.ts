@@ -28,7 +28,9 @@ export function createThockittyMcpServer(metadata: Metadata): McpServer {
 				(input: ComponentIdInput) => tool.handler(input, metadata)
 			)
 		} else {
-			server.tool(tool.name, tool.description, () => tool.handler(undefined, metadata))
+			server.tool(tool.name, tool.description, () =>
+				tool.handler(undefined, metadata)
+			)
 		}
 	}
 

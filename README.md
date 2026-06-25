@@ -70,6 +70,7 @@ pnpm run build-mcp-metadata
 ```
 
 This generates `netlify/functions/metadata.json` by analyzing:
+
 - Component props from TypeScript interfaces
 - Story variants from Storybook stories
 - MDX documentation files
@@ -113,15 +114,15 @@ pnpm exec mcp-inspector
 
 Once connected, the following tools are available:
 
-| Tool | Description |
-|------|-------------|
-| `list-components` | Returns all available component IDs |
-| `get-component` | Returns props definition for a component |
-| `get-component-stories` | Returns stories/variants for a component |
-| `get-component-docs` | Returns MDX documentation for a component |
-| `get-color-tokens` | Returns all color design tokens |
-| `get-spacing-tokens` | Returns all spacing design tokens |
-| `get-typography-tokens` | Returns all typography design tokens |
+| Tool                    | Description                               |
+| ----------------------- | ----------------------------------------- |
+| `list-components`       | Returns all available component IDs       |
+| `get-component`         | Returns props definition for a component  |
+| `get-component-stories` | Returns stories/variants for a component  |
+| `get-component-docs`    | Returns MDX documentation for a component |
+| `get-color-tokens`      | Returns all color design tokens           |
+| `get-spacing-tokens`    | Returns all spacing design tokens         |
+| `get-typography-tokens` | Returns all typography design tokens      |
 
 #### Production
 

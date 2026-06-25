@@ -12,7 +12,12 @@ const __dir =
 
 export const root = path.resolve(__dir, '..')
 export const componentsDir = path.join(root, 'src', 'components')
-export const outputPath = path.join(root, 'netlify', 'functions', 'metadata.json')
+export const outputPath = path.join(
+	root,
+	'netlify',
+	'functions',
+	'metadata.json'
+)
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
 
@@ -40,19 +45,35 @@ export interface PropDef {
 	description: string | null
 }
 
-export function getJsDocTagValue(symbol: ts.Symbol, tagName: string): string | null {
+export function getJsDocTagValue(
+	symbol: ts.Symbol,
+	tagName: string
+): string | null {
 	const jsDocs = symbol.getJsDocTags()
 	const tag = jsDocs.find((t) => t.name === tagName)
 	if (!tag || !tag.text) return null
-	return tag.text.map((part) => part.text).join('').trim() || null
+	return (
+		tag.text
+			.map((part) => part.text)
+			.join('')
+			.trim() || null
+	)
 }
 
-export function getJsDocComment(symbol: ts.Symbol, checker: ts.TypeChecker): string | null {
-	const comment = ts.displayPartsToString(symbol.getDocumentationComment(checker)).trim()
+export function getJsDocComment(
+	symbol: ts.Symbol,
+	checker: ts.TypeChecker
+): string | null {
+	const comment = ts
+		.displayPartsToString(symbol.getDocumentationComment(checker))
+		.trim()
 	return comment || null
 }
 
-export function extractTypeString(type: ts.Type, checker: ts.TypeChecker): string {
+export function extractTypeString(
+	type: ts.Type,
+	checker: ts.TypeChecker
+): string {
 	return checker.typeToString(type)
 }
 
@@ -83,11 +104,23 @@ export function extractProps(componentFile: string): PropDef[] {
 					typeStr = extractTypeString(type, checker)
 				}
 
-				const rawDefault = symbol ? getJsDocTagValue(symbol, 'default') : null
-				const defaultVal = rawDefault ? rawDefault.replace(/^['"]|['"]$/g, '') : null
-				const description = symbol ? getJsDocComment(symbol, checker) : null
+				const rawDefault = symbol
+					? getJsDocTagValue(symbol, 'default')
+					: null
+				const defaultVal = rawDefault
+					? rawDefault.replace(/^['"]|['"]$/g, '')
+					: null
+				const description = symbol
+					? getJsDocComment(symbol, checker)
+					: null
 
-				props.push({ name, type: typeStr, default: defaultVal, required, description })
+				props.push({
+					name,
+					type: typeStr,
+					default: defaultVal,
+					required,
+					description,
+				})
 			}
 		}
 		ts.forEachChild(node, visit)
@@ -104,7 +137,10 @@ export interface StoryDef {
 	args: Record<string, unknown>
 }
 
-export function extractArgs(node: ts.ObjectLiteralExpression, sourceFile: ts.SourceFile): Record<string, unknown> {
+export function extractArgs(
+	node: ts.ObjectLiteralExpression,
+	sourceFile: ts.SourceFile
+): Record<string, unknown> {
 	const result: Record<string, unknown> = {}
 	for (const prop of node.properties) {
 		if (!ts.isPropertyAssignment(prop)) continue
@@ -129,21 +165,30 @@ export function extractStories(storiesFile: string): StoryDef[] {
 
 	for (const stmt of sourceFile.statements) {
 		if (!ts.isVariableStatement(stmt)) continue
-		const isExported = stmt.modifiers?.some((m) => m.kind === ts.SyntaxKind.ExportKeyword)
+		const isExported = stmt.modifiers?.some(
+			(m) => m.kind === ts.SyntaxKind.ExportKeyword
+		)
 		if (!isExported) continue
 
 		for (const decl of stmt.declarationList.declarations) {
 			if (!ts.isIdentifier(decl.name)) continue
 			const id = decl.name.text
 			if (id === 'default') continue
-			if (!decl.initializer || !ts.isObjectLiteralExpression(decl.initializer)) continue
+			if (
+				!decl.initializer ||
+				!ts.isObjectLiteralExpression(decl.initializer)
+			)
+				continue
 
 			const obj = decl.initializer
 			let args: Record<string, unknown> = {}
 
 			for (const prop of obj.properties) {
 				if (!ts.isPropertyAssignment(prop)) continue
-				if (prop.name.getText(sourceFile) === 'args' && ts.isObjectLiteralExpression(prop.initializer)) {
+				if (
+					prop.name.getText(sourceFile) === 'args' &&
+					ts.isObjectLiteralExpression(prop.initializer)
+				) {
 					args = extractArgs(prop.initializer, sourceFile)
 				}
 			}
@@ -162,7 +207,10 @@ export interface SimpleToken {
 	value: string
 }
 
-export function getPropKey(prop: ts.ObjectLiteralElementLike, sourceFile: ts.SourceFile): string {
+export function getPropKey(
+	prop: ts.ObjectLiteralElementLike,
+	sourceFile: ts.SourceFile
+): string {
 	if (ts.isPropertyAssignment(prop)) {
 		const name = prop.name
 		if (ts.isStringLiteral(name)) return name.text
@@ -180,8 +228,13 @@ export function extractSimpleTokens(tokenFile: string): SimpleToken[] {
 	for (const stmt of sourceFile.statements) {
 		if (!ts.isVariableStatement(stmt)) continue
 		for (const decl of stmt.declarationList.declarations) {
-			if (!ts.isIdentifier(decl.name) || decl.name.text !== 'tokens') continue
-			if (!decl.initializer || !ts.isArrayLiteralExpression(decl.initializer)) continue
+			if (!ts.isIdentifier(decl.name) || decl.name.text !== 'tokens')
+				continue
+			if (
+				!decl.initializer ||
+				!ts.isArrayLiteralExpression(decl.initializer)
+			)
+				continue
 
 			return decl.initializer.elements
 				.filter(ts.isObjectLiteralExpression)
@@ -211,8 +264,13 @@ export function extractTypographyTokens(tokenFile: string): SimpleToken[] {
 	for (const stmt of sourceFile.statements) {
 		if (!ts.isVariableStatement(stmt)) continue
 		for (const decl of stmt.declarationList.declarations) {
-			if (!ts.isIdentifier(decl.name) || decl.name.text !== 'tokens') continue
-			if (!decl.initializer || !ts.isArrayLiteralExpression(decl.initializer)) continue
+			if (!ts.isIdentifier(decl.name) || decl.name.text !== 'tokens')
+				continue
+			if (
+				!decl.initializer ||
+				!ts.isArrayLiteralExpression(decl.initializer)
+			)
+				continue
 
 			return decl.initializer.elements
 				.filter(ts.isObjectLiteralExpression)
@@ -235,7 +293,8 @@ export function extractTypographyTokens(tokenFile: string): SimpleToken[] {
 					const size = f.fontSize ?? ''
 					const lineHeight = f.lineHeight ?? 'normal'
 					const family = f.fontFamily ?? ''
-					const value = `${weight} ${size}/${lineHeight} ${family}`.trim()
+					const value =
+						`${weight} ${size}/${lineHeight} ${family}`.trim()
 					return { cssVariable: f.cssVariable as string, value }
 				})
 		}
@@ -267,7 +326,9 @@ function main() {
 
 	const componentDirs = fs
 		.readdirSync(componentsDir)
-		.filter((name) => fs.statSync(path.join(componentsDir, name)).isDirectory())
+		.filter((name) =>
+			fs.statSync(path.join(componentsDir, name)).isDirectory()
+		)
 
 	const components: Record<string, ComponentMeta> = {}
 
@@ -279,8 +340,12 @@ function main() {
 		const storiesFile = path.join(compDir, '_stories', `${dir}.stories.tsx`)
 		const mdxFile = path.join(compDir, '_docs', `${dir}.mdx`)
 
-		const props = fs.existsSync(componentFile) ? extractProps(componentFile) : []
-		const stories = fs.existsSync(storiesFile) ? extractStories(storiesFile) : []
+		const props = fs.existsSync(componentFile)
+			? extractProps(componentFile)
+			: []
+		const stories = fs.existsSync(storiesFile)
+			? extractStories(storiesFile)
+			: []
 		const mdx = fs.existsSync(mdxFile) ? readFile(mdxFile) : ''
 
 		components[id] = { props, stories, mdx }
@@ -288,22 +353,36 @@ function main() {
 
 	const colorFile = path.join(root, 'src', 'tokens', 'ts', 'colors.ts')
 	const spacingFile = path.join(root, 'src', 'tokens', 'ts', 'spacing.ts')
-	const typographyFile = path.join(root, 'src', 'tokens', 'ts', 'typography.ts')
+	const typographyFile = path.join(
+		root,
+		'src',
+		'tokens',
+		'ts',
+		'typography.ts'
+	)
 
 	const metadata: Metadata = {
 		version,
 		components,
 		tokens: {
-			color: fs.existsSync(colorFile) ? extractSimpleTokens(colorFile) : [],
-			spacing: fs.existsSync(spacingFile) ? extractSimpleTokens(spacingFile) : [],
-			typography: fs.existsSync(typographyFile) ? extractTypographyTokens(typographyFile) : [],
+			color: fs.existsSync(colorFile)
+				? extractSimpleTokens(colorFile)
+				: [],
+			spacing: fs.existsSync(spacingFile)
+				? extractSimpleTokens(spacingFile)
+				: [],
+			typography: fs.existsSync(typographyFile)
+				? extractTypographyTokens(typographyFile)
+				: [],
 		},
 	}
 
 	fs.mkdirSync(path.dirname(outputPath), { recursive: true })
 	fs.writeFileSync(outputPath, JSON.stringify(metadata, null, 2))
 	console.log(`metadata.json written to ${outputPath}`)
-	console.log(`  ${componentDirs.length} components: ${componentDirs.map((d) => d.toLowerCase()).join(', ')}`)
+	console.log(
+		`  ${componentDirs.length} components: ${componentDirs.map((d) => d.toLowerCase()).join(', ')}`
+	)
 	console.log(`  ${metadata.tokens.color.length} color tokens`)
 	console.log(`  ${metadata.tokens.spacing.length} spacing tokens`)
 	console.log(`  ${metadata.tokens.typography.length} typography tokens`)
@@ -312,5 +391,6 @@ function main() {
 // Only run main when invoked directly (e.g. `tsx scripts/build-mcp-metadata.ts`),
 // not when imported (e.g. by .storybook/thockitty-mcp-preset/preset.ts).
 const invokedDirectly =
-	process.argv[1] && pathToFileURL(path.resolve(process.argv[1])).href === import.meta.url
+	process.argv[1] &&
+	pathToFileURL(path.resolve(process.argv[1])).href === import.meta.url
 if (invokedDirectly) main()

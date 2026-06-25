@@ -11,7 +11,9 @@ const config: StorybookConfig = {
 		'@storybook/addon-a11y',
 		'@storybook/addon-docs',
 		// MCP preset only runs in dev mode — skip during `storybook build`.
-		...(process.env.NODE_ENV === 'production' ? [] : ['./thockitty-mcp-preset/preset']),
+		...(process.env.NODE_ENV === 'production'
+			? []
+			: ['./thockitty-mcp-preset/preset']),
 		'storybook-addon-pseudo-states',
 		'storybook-addon-tag-badges',
 	],

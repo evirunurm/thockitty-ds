@@ -68,8 +68,13 @@ export default async (req: Request): Promise<Response> => {
 	const metadata = loadMetadata()
 	if (!metadata) {
 		return new Response(
-			JSON.stringify({ error: 'metadata.json not found. Run npm run build-mcp-metadata first.' }),
-			{ status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+			JSON.stringify({
+				error: 'metadata.json not found. Run npm run build-mcp-metadata first.',
+			}),
+			{
+				status: 500,
+				headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+			}
 		)
 	}
 

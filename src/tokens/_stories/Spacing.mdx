@@ -17,15 +17,20 @@ export const descriptions = {
 <Meta title="Tokens/Spacing" />
 
 <Unstyled>
-<DocPage>
-	{Object.entries(groups).map(([group, groupTokens]) => (
-		<Section key={group} title={group} description={descriptions[group]} bordered>
-			<div style={{ display: 'flex', flexDirection: 'column' }}>
-				{groupTokens.map((token) => (
-					<SpacingToken key={token.name} token={token} />
-				))}
-			</div>
-		</Section>
-	))}
-</DocPage>
+	<DocPage>
+		{Object.entries(groups).map(([group, groupTokens]) => (
+			<Section
+				key={group}
+				title={group}
+				description={descriptions[group]}
+				bordered
+			>
+				<div style={{ display: 'flex', flexDirection: 'column' }}>
+					{groupTokens.map((token) => (
+						<SpacingToken key={token.name} token={token} />
+					))}
+				</div>
+			</Section>
+		))}
+	</DocPage>
 </Unstyled>

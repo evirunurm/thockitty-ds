@@ -16,5 +16,8 @@ export interface ToolConfig {
 	name: string
 	description: string
 	schema: typeof ComponentIdSchema | undefined
-	handler: (input: ComponentIdInput | undefined, metadata: Metadata) => ToolResult
+	handler: (
+		input: ComponentIdInput | undefined,
+		metadata: Metadata
+	) => ToolResult
 }

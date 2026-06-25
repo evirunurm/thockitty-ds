@@ -46,8 +46,10 @@ async function fetchManifest(origin) {
 	for (let attempt = 0; attempt < 40; attempt++) {
 		try {
 			const res = await fetch(`${origin}/manifests/components.json`)
-			if (res.ok) return /** @type {ComponentManifestMap} */ (await res.json())
-			if (res.status !== 404) throw new Error(`manifest fetch returned ${res.status}`)
+			if (res.ok)
+				return /** @type {ComponentManifestMap} */ (await res.json())
+			if (res.status !== 404)
+				throw new Error(`manifest fetch returned ${res.status}`)
 		} catch (e) {
 			if (attempt === 39) throw e
 		}
@@ -66,7 +68,10 @@ function stripDefault(value) {
 }
 
 function docgenToProps(/** @type {ManifestComponent} */ comp) {
-	const doc = comp.reactDocgenTypescript ?? comp.reactDocgen ?? comp.reactComponentMeta
+	const doc =
+		comp.reactDocgenTypescript ??
+		comp.reactDocgen ??
+		comp.reactComponentMeta
 	const props = doc?.props
 	if (!props) return []
 	return Object.entries(props).map(([name, p]) => ({
@@ -88,7 +93,10 @@ function componentsFromManifest(manifest) {
 		// docs:    <compDir>/_docs/<Name>.mdx
 		const absStories = resolve(root, compPath)
 		const compDir = dirname(dirname(absStories))
-		const base = basename(absStories, extname(absStories)).replace(/\.stories$/, '')
+		const base = basename(absStories, extname(absStories)).replace(
+			/\.stories$/,
+			''
+		)
 		const id = base.toLowerCase()
 		const mdxFile = join(compDir, '_docs', `${base}.mdx`)
 
@@ -158,7 +166,10 @@ async function runRebuild(origin) {
 			const metadata = await buildMetadata(origin)
 			return metadata
 		} catch (err) {
-			console.error('[thockitty-mcp] rebuild failed (serving previous snapshot):', err?.message ?? err)
+			console.error(
+				'[thockitty-mcp] rebuild failed (serving previous snapshot):',
+				err?.message ?? err
+			)
 			return null
 		} finally {
 			building = null
@@ -194,7 +205,10 @@ function startWatchers(origin) {
 			// recursive:true works on Windows/macOS; ignored on Linux (we'd glob).
 			watchers.push(watch(dir, { recursive: true }, onChange))
 		} catch (err) {
-			console.error(`[thockitty-mcp] Could not watch ${relative(root, dir)}:`, err?.message)
+			console.error(
+				`[thockitty-mcp] Could not watch ${relative(root, dir)}:`,
+				err?.message
+			)
 		}
 	}
 }
@@ -221,7 +235,9 @@ function applyCors(res) {
 
 async function handleMcp(req, res, origin) {
 	try {
-		const body = ['GET', 'HEAD'].includes(req.method) ? null : await readBody(req)
+		const body = ['GET', 'HEAD'].includes(req.method)
+			? null
+			: await readBody(req)
 		const url = `${origin}${req.originalUrl ?? req.url}`
 
 		const headers = new Headers()
@@ -246,7 +262,11 @@ async function handleMcp(req, res, origin) {
 				JSON.stringify({
 					jsonrpc: '2.0',
 					id: null,
-					error: { code: -32603, message: 'Thockitty MCP still building initial snapshot; retry shortly.' },
+					error: {
+						code: -32603,
+						message:
+							'Thockitty MCP still building initial snapshot; retry shortly.',
+					},
 				})
 			)
 			return
@@ -271,7 +291,16 @@ async function handleMcp(req, res, origin) {
 			applyCors(res)
 			res.statusCode = 500
 			res.setHeader('content-type', 'application/json')
-			res.end(JSON.stringify({ jsonrpc: '2.0', id: null, error: { code: -32603, message: String(err?.message ?? err) } }))
+			res.end(
+				JSON.stringify({
+					jsonrpc: '2.0',
+					id: null,
+					error: {
+						code: -32603,
+						message: String(err?.message ?? err),
+					},
+				})
+			)
 		} else {
 			res.end()
 		}
@@ -298,7 +327,7 @@ const experimental_devServer = async (app, options) => {
 		await handleMcp(req, res, origin)
 	})
 
-	app.get('/mcp', (req,	res) => {
+	app.get('/mcp', (req, res) => {
 		if (req.headers.accept?.includes('text/html')) {
 			applyCors(res)
 			res.setHeader('content-type', 'text/html; charset=utf-8')

@@ -150,7 +150,8 @@ export const BodyMonoLarge: Story = {
 	args: {
 		variant: 'body-mono-large',
 		as: 'p',
-		children: 'Body Mono Large — the quick brown fox jumps over the lazy dog.',
+		children:
+			'Body Mono Large — the quick brown fox jumps over the lazy dog.',
 	},
 }
 
@@ -168,7 +169,8 @@ export const BodyMonoSmall: Story = {
 	args: {
 		variant: 'body-mono-small',
 		as: 'p',
-		children: 'Body Mono Small — the quick brown fox jumps over the lazy dog.',
+		children:
+			'Body Mono Small — the quick brown fox jumps over the lazy dog.',
 	},
 }
 

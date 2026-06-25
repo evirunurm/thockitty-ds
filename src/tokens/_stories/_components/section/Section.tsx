@@ -15,16 +15,21 @@ export const Section = ({
 	padded,
 	children,
 }: PropsWithChildren<SectionParams>) => {
-	const contentClasses = [
-		bordered ? styles.bordered : undefined,
-		padded ? styles.padded : undefined,
-	].filter(Boolean).join(' ') || undefined
+	const contentClasses =
+		[
+			bordered ? styles.bordered : undefined,
+			padded ? styles.padded : undefined,
+		]
+			.filter(Boolean)
+			.join(' ') || undefined
 
 	return (
 		<section className={styles.section}>
 			<div className={styles.header}>
 				<h2>{title}</h2>
-				{description && <p className={styles.description}>{description}</p>}
+				{description && (
+					<p className={styles.description}>{description}</p>
+				)}
 			</div>
 			<div className={contentClasses}>{children}</div>
 		</section>
