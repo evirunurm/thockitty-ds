@@ -9,7 +9,7 @@ Browse the component library live at: https://evirunurm.github.io/thockitty-ds/
 ## Installation
 
 ```bash
-npm install thockitty-ds
+pnpm install @evirunurm/thockitty-ds
 ```
 
 ### Peer dependencies
@@ -17,7 +17,7 @@ npm install thockitty-ds
 Requires React 18 or 19:
 
 ```bash
-npm install react react-dom
+pnpm install react react-dom
 ```
 
 ## Usage
@@ -48,13 +48,13 @@ An accessible button built on `@react-aria/button`. Supports `forwardRef`, `onPr
 
 ```bash
 # Install dependencies
-npm install
+pnpm install
 
 # Build the library
-npm run build
+pnpm run build
 
 # Start Storybook
-npm run storybook
+pnpm run storybook
 ```
 
 ### MCP Server
@@ -66,7 +66,7 @@ The library exposes an MCP (Model Context Protocol) server that provides program
 The MCP server requires pre-built metadata about components and tokens:
 
 ```bash
-npm run build-mcp-metadata
+pnpm run build-mcp-metadata
 ```
 
 This generates `netlify/functions/metadata.json` by analyzing:
@@ -80,7 +80,7 @@ This generates `netlify/functions/metadata.json` by analyzing:
 Run the local MCP server for testing:
 
 ```bash
-npm run mcp:dev
+pnpm run storybook
 ```
 
 This starts a stdio-based MCP server that can be tested with the MCP Inspector.
@@ -91,22 +91,22 @@ The MCP Inspector provides a UI for testing MCP servers:
 
 ```bash
 # Install globally
-npm install -g @modelcontextprotocol/inspector
-
-# Run from project root
-cd thockitty-ds
-mcp-inspector
+pnpm add -g @modelcontextprotocol/inspector
 ```
 
-In the inspector UI, add a new server:
+Run using `pnpm exec` (required for pnpm to resolve global binaries):
+
+```bash
+pnpm exec mcp-inspector --command node --args "--import" --args "tsx/esm" --args "scripts/mcp-local-server.ts"
+```
+
+Or run the inspector first, then add a new server with:
 
 - **Command:** `node`
 - **Args:** `--import`, `tsx/esm`, `scripts/mcp-local-server.ts`
 
-Or run with inline arguments:
-
 ```bash
-mcp-inspector --command node --args "--import" --args "tsx/esm" --args "scripts/mcp-local-server.ts"
+pnpm exec mcp-inspector
 ```
 
 #### Available MCP Tools

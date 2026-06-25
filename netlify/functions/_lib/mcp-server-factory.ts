@@ -1,6 +1,7 @@
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js'
-import { z } from 'zod'
 import type { Metadata } from '../../../scripts/build-mcp-metadata'
+import { tools } from './mcp-tools'
+import type { ComponentIdInput } from './mcp-types'
 
 /**
  * Shared MCP server factory used by BOTH:
@@ -16,117 +17,20 @@ export function createThockittyMcpServer(metadata: Metadata): McpServer {
 		version: metadata.version,
 	})
 
-	function componentError(componentId: string): string {
-		return `Component '${componentId}' not found. Call list-components to see available options.`
+	for (const tool of tools) {
+		if (tool.schema) {
+			server.registerTool(
+				tool.name,
+				{
+					description: tool.description,
+					inputSchema: tool.schema as any,
+				},
+				(input: ComponentIdInput) => tool.handler(input, metadata)
+			)
+		} else {
+			server.tool(tool.name, tool.description, () => tool.handler(undefined, metadata))
+		}
 	}
-
-	server.tool('list-components', 'Returns all available component IDs', () => ({
-		content: [
-			{
-				type: 'text' as const,
-				text: JSON.stringify({
-					version: metadata.version,
-					components: Object.keys(metadata.components),
-				}),
-			},
-		],
-	}))
-
-	server.tool(
-		'get-component',
-		'Returns props definition for a component',
-		{ componentId: z.string().describe('The component ID (e.g. "button")') },
-		({ componentId }) => {
-			const comp = metadata.components[componentId.toLowerCase()]
-			if (!comp) {
-				return {
-					isError: true,
-					content: [{ type: 'text' as const, text: componentError(componentId) }],
-				}
-			}
-			return {
-				content: [
-					{
-						type: 'text' as const,
-						text: JSON.stringify({ version: metadata.version, id: componentId, props: comp.props }),
-					},
-				],
-			}
-		}
-	)
-
-	server.tool(
-		'get-component-stories',
-		'Returns stories/variants for a component',
-		{ componentId: z.string().describe('The component ID (e.g. "button")') },
-		({ componentId }) => {
-			const comp = metadata.components[componentId.toLowerCase()]
-			if (!comp) {
-				return {
-					isError: true,
-					content: [{ type: 'text' as const, text: componentError(componentId) }],
-				}
-			}
-			return {
-				content: [
-					{
-						type: 'text' as const,
-						text: JSON.stringify({ version: metadata.version, id: componentId, stories: comp.stories }),
-					},
-				],
-			}
-		}
-	)
-
-	server.tool(
-		'get-component-docs',
-		'Returns raw MDX documentation string for a component',
-		{ componentId: z.string().describe('The component ID (e.g. "button")') },
-		({ componentId }) => {
-			const comp = metadata.components[componentId.toLowerCase()]
-			if (!comp) {
-				return {
-					isError: true,
-					content: [{ type: 'text' as const, text: componentError(componentId) }],
-				}
-			}
-			return {
-				content: [
-					{
-						type: 'text' as const,
-						text: JSON.stringify({ version: metadata.version, id: componentId, mdx: comp.mdx }),
-					},
-				],
-			}
-		}
-	)
-
-	server.tool('get-color-tokens', 'Returns all color design tokens', () => ({
-		content: [
-			{
-				type: 'text' as const,
-				text: JSON.stringify({ version: metadata.version, tokens: metadata.tokens.color }),
-			},
-		],
-	}))
-
-	server.tool('get-spacing-tokens', 'Returns all spacing design tokens', () => ({
-		content: [
-			{
-				type: 'text' as const,
-				text: JSON.stringify({ version: metadata.version, tokens: metadata.tokens.spacing }),
-			},
-		],
-	}))
-
-	server.tool('get-typography-tokens', 'Returns all typography design tokens', () => ({
-		content: [
-			{
-				type: 'text' as const,
-				text: JSON.stringify({ version: metadata.version, tokens: metadata.tokens.typography }),
-			},
-		],
-	}))
 
 	return server
 }

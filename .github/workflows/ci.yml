@@ -13,10 +13,10 @@ jobs:
             - uses: actions/setup-node@v4
               with:
                   node-version: 20
-                  cache: npm
+                  cache: pnpm
 
-            - run: npm ci
-            - run: npm run build
+            - run: pnpm install --frozen-lockfile
+            - run: pnpm run build
 
             # Future: add test step when tests are added
             # - run: npm test
