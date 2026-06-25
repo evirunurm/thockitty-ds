@@ -1,0 +1,39 @@
+import { Meta, Unstyled } from '@storybook/addon-docs/blocks'
+import { tokens } from '../ts/colors'
+import { ColorSwatch } from './_components/color-swatch/ColorSwatch'
+import { Section } from './_components/section/Section'
+import { DocPage } from './_components/doc-page/DocPage'
+
+export const groups = tokens.reduce((acc, token) => {
+	const group = token.path.split('.')[2] ?? 'other'
+	;(acc[group] ??= []).push(token)
+	return acc
+}, {})
+
+export const groupDescriptions = {
+	base: 'Pure black and white anchors used for text, backgrounds, and high-contrast surfaces.',
+	gray: 'A neutral scale from near-white to near-black for borders, backgrounds, and secondary text.',
+	red: 'Accent hue used for interactive highlights, focus rings, and brand emphasis.',
+}
+
+<Meta title="Tokens/Colors" />
+
+<Unstyled>
+<DocPage>
+	{Object.entries(groups).map(([group, groupTokens]) => (
+		<Section key={group} title={group} description={groupDescriptions[group]} bordered padded>
+			<div
+				style={{
+					display: 'grid',
+					gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))',
+					gap: 'var(--foundation-space-006)',
+				}}
+			>
+				{groupTokens.map((token) => (
+					<ColorSwatch key={token.name} color={token} />
+				))}
+			</div>
+		</Section>
+	))}
+</DocPage>
+</Unstyled>

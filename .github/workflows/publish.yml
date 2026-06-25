@@ -1,0 +1,40 @@
+name: Publish
+
+on:
+    workflow_dispatch:
+
+permissions:
+    contents: write
+    packages: write
+
+jobs:
+    publish:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+              with:
+                  token: ${{ secrets.GITHUB_TOKEN }}
+
+            - uses: actions/setup-node@v4
+              with:
+                  node-version: 20
+                  cache: pnpm
+                  registry-url: https://npm.pkg.github.com
+
+            - uses: pnpm/action-setup@v4
+            - run: pnpm install --frozen-lockfile
+            - run: pnpm version patch --no-git-tag-version
+
+            - name: Commit and push version bump
+              run: |
+                  git config user.name "github-actions[bot]"
+                  git config user.email "github-actions[bot]@users.noreply.github.com"
+                  VERSION=$(node -p "require('./package.json').version")
+                  git add package.json pnpm-lock.yaml
+                  git commit -m "chore: bump version to $VERSION"
+                  git push
+
+            - run: pnpm run build
+            - run: pnpm publish
+              env:
+                  NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

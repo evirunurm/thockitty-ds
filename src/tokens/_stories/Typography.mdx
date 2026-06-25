@@ -1,0 +1,35 @@
+import { Meta, Unstyled } from '@storybook/addon-docs/blocks'
+import { tokens } from '../ts/typography'
+import { TypographyToken } from './_components/typography-token/TypographyToken'
+import { Section } from './_components/section/Section'
+import { DocPage } from './_components/doc-page/DocPage'
+
+export const groups = tokens.reduce((acc, token) => {
+	const group = token.path.split('.')[2] ?? 'other'
+	;(acc[group] ??= []).push(token)
+	return acc
+}, {})
+
+export const descriptions = {
+	titles:
+		'Hero display text — the largest scale in the system. Reserved for splash screens, hero sections, or single-word statements. Available in Geist (sans) and Geist Mono.',
+	headings:
+		'Structured content hierarchy from H1 to H4. Use to organize sections and sub-sections. Each level ships in both Geist (sans) and Geist Mono for typographic flexibility.',
+	body: 'All-purpose prose and UI text. Covers large, default, small, and caption sizes. Both Geist (sans) and Geist Mono variants available — mix intentionally for functional contrast.',
+}
+
+<Meta title="Tokens/Typography" />
+
+<Unstyled>
+<DocPage>
+	{Object.entries(groups).map(([group, groupTokens]) => (
+		<Section key={group} title={group} description={descriptions[group]} bordered>
+			<div style={{ display: 'flex', flexDirection: 'column' }}>
+				{groupTokens.map((token) => (
+					<TypographyToken key={token.name} token={token} />
+				))}
+			</div>
+		</Section>
+	))}
+</DocPage>
+</Unstyled>

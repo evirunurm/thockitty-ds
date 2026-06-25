@@ -1,0 +1,79 @@
+.card {
+	display: flex;
+	flex-direction: row;
+	align-items: stretch;
+	gap: 0;
+	padding: 16px 0;
+	border-bottom: 1px solid var(--foundation-color-gray-100);
+}
+
+.card:last-child {
+	border-bottom: none;
+}
+
+.sample {
+	flex: 1;
+	display: flex;
+	align-items: center;
+	padding-right: 24px;
+	min-width: 0;
+}
+
+.sampleText {
+	display: block;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	width: 100%;
+}
+
+.divider {
+	width: 1px;
+	align-self: stretch;
+	flex-shrink: 0;
+}
+
+.meta {
+	width: 450px;
+	flex-shrink: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+	padding-left: 24px;
+}
+
+.tokenList {
+	display: flex;
+	flex-direction: column;
+	gap: 3px;
+	width: 100%;
+}
+
+.tokenRow {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+}
+
+.tokenKey {
+	white-space: nowrap;
+	flex-shrink: 0;
+	min-width: 96px;
+}
+
+.tokenSep {
+	flex: 1;
+	height: 1px;
+	background-image: repeating-linear-gradient(
+		to right,
+		var(--foundation-color-gray-300) 0,
+		var(--foundation-color-gray-300) 2px,
+		transparent 2px,
+		transparent 6px
+	);
+}
+
+.tokenValue {
+	white-space: nowrap;
+	flex-shrink: 0;
+}

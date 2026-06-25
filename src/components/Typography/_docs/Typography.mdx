@@ -1,0 +1,28 @@
+import { Meta, ArgTypes } from '@storybook/addon-docs/blocks'
+import * as TypographyStories from '../_stories/Typography.stories'
+
+<Meta of={TypographyStories} name="Docs" />
+
+# Typography
+
+Renders text using the design system's typography tokens. Supports polymorphic rendering via the `as` prop.
+
+## When to use
+
+Use `Typography` whenever you want to render any type of text that follows the design system. Pass the `as` prop to render the semantically correct HTML element for the context (`h1`–`h6`, `p`, `span`, `label`, etc.).
+
+## Properties
+
+<ArgTypes of={TypographyStories} />
+
+## Do's and don'ts
+
+### Do
+
+- **Use `as` for semantics** — pass `as="h1"` through `as="h6"` when the text is a heading, `as="p"` for paragraphs, `as="label"` for form labels.
+- **Don't forget to import font face declarations** — consumers must import it for Geist/Geist Mono to load.
+
+### Don't
+
+- **Don't mix variant scale and `as` element arbitrarily** — e.g. avoid rendering a `hero` variant as an `<h6>`. Keep visual scale and semantic level aligned.
+- **Don't override `font` or `color`** — the variant already bakes in family, size, weight, line-height, and letter-spacing and color. Overriding it breaks consistency.
