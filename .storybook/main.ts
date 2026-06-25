@@ -10,7 +10,8 @@ const config: StorybookConfig = {
 		'@storybook/addon-webpack5-compiler-swc',
 		'@storybook/addon-a11y',
 		'@storybook/addon-docs',
-		'./thockitty-mcp-preset/preset',
+		// MCP preset only runs in dev mode — skip during `storybook build`.
+		...(process.env.NODE_ENV === 'production' ? [] : ['./thockitty-mcp-preset/preset']),
 		'storybook-addon-pseudo-states',
 		'storybook-addon-tag-badges',
 	],
