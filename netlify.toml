@@ -5,6 +5,7 @@
 [functions]
   node_bundler = "esbuild"
   included_files = ["netlify/functions/metadata.json"]
+  external_node_modules = ["zod", "zod-to-json-schema"]
 
 [dev]
   command = "pnpm run storybook"
