@@ -9,7 +9,7 @@ Browse the component library live at: https://evirunurm.github.io/thockitty-ds/
 ## Installation
 
 ```bash
-npm install thockitty-ds
+pnpm install @evirunurm/thockitty-ds
 ```
 
 ### Peer dependencies
@@ -17,7 +17,7 @@ npm install thockitty-ds
 Requires React 18 or 19:
 
 ```bash
-npm install react react-dom
+pnpm install react react-dom
 ```
 
 ## Usage
@@ -48,14 +48,85 @@ An accessible button built on `@react-aria/button`. Supports `forwardRef`, `onPr
 
 ```bash
 # Install dependencies
-npm install
+pnpm install
 
 # Build the library
-npm run build
+pnpm run build
 
 # Start Storybook
-npm run storybook
+pnpm run storybook
 ```
+
+### MCP Server
+
+The library exposes an MCP (Model Context Protocol) server that provides programmatic access to component documentation, props, and design tokens.
+
+#### Build Metadata
+
+The MCP server requires pre-built metadata about components and tokens:
+
+```bash
+pnpm run build-mcp-metadata
+```
+
+This generates `netlify/functions/metadata.json` by analyzing:
+
+- Component props from TypeScript interfaces
+- Story variants from Storybook stories
+- MDX documentation files
+- Design tokens (colors, spacing, typography)
+
+#### Local Development
+
+Run the local MCP server for testing:
+
+```bash
+pnpm run storybook
+```
+
+This starts a stdio-based MCP server that can be tested with the MCP Inspector.
+
+#### Testing with MCP Inspector
+
+The MCP Inspector provides a UI for testing MCP servers:
+
+```bash
+# Install globally
+pnpm add -g @modelcontextprotocol/inspector
+```
+
+Run using `pnpm exec` (required for pnpm to resolve global binaries):
+
+```bash
+pnpm exec mcp-inspector --command node --args "--import" --args "tsx/esm" --args "scripts/mcp-local-server.ts"
+```
+
+Or run the inspector first, then add a new server with:
+
+- **Command:** `node`
+- **Args:** `--import`, `tsx/esm`, `scripts/mcp-local-server.ts`
+
+```bash
+pnpm exec mcp-inspector
+```
+
+#### Available MCP Tools
+
+Once connected, the following tools are available:
+
+| Tool                    | Description                               |
+| ----------------------- | ----------------------------------------- |
+| `list-components`       | Returns all available component IDs       |
+| `get-component`         | Returns props definition for a component  |
+| `get-component-stories` | Returns stories/variants for a component  |
+| `get-component-docs`    | Returns MDX documentation for a component |
+| `get-color-tokens`      | Returns all color design tokens           |
+| `get-spacing-tokens`    | Returns all spacing design tokens         |
+| `get-typography-tokens` | Returns all typography design tokens      |
+
+#### Production
+
+In production (Netlify), the MCP server runs as an HTTP function at `/.netlify/functions/mcp`. It uses the Web Standard Streamable HTTP transport for compatibility with MCP clients.
 
 ## Tech stack
 

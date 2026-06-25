@@ -19,21 +19,28 @@ export const groupDescriptions = {
 <Meta title="Tokens/Colors" />
 
 <Unstyled>
-<DocPage>
-	{Object.entries(groups).map(([group, groupTokens]) => (
-		<Section key={group} title={group} description={groupDescriptions[group]} bordered padded>
-			<div
-				style={{
-					display: 'grid',
-					gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))',
-					gap: 'var(--foundation-space-006)',
-				}}
+	<DocPage>
+		{Object.entries(groups).map(([group, groupTokens]) => (
+			<Section
+				key={group}
+				title={group}
+				description={groupDescriptions[group]}
+				bordered
+				padded
 			>
-				{groupTokens.map((token) => (
-					<ColorSwatch key={token.name} color={token} />
-				))}
-			</div>
-		</Section>
-	))}
-</DocPage>
+				<div
+					style={{
+						display: 'grid',
+						gridTemplateColumns:
+							'repeat(auto-fill, minmax(200px, 1fr))',
+						gap: 'var(--foundation-space-006)',
+					}}
+				>
+					{groupTokens.map((token) => (
+						<ColorSwatch key={token.name} color={token} />
+					))}
+				</div>
+			</Section>
+		))}
+	</DocPage>
 </Unstyled>

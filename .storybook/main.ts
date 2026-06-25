@@ -3,11 +3,17 @@ import type { StorybookConfig } from '@storybook/react-webpack5'
 const config: StorybookConfig = {
 	staticDirs: ['../public'],
 	stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
+	// Enable the experimental component manifest so our preset can read live
+	// argTypes from /manifests/components.json (props source for the MCP tools).
+	features: { componentsManifest: true },
 	addons: [
 		'@storybook/addon-webpack5-compiler-swc',
 		'@storybook/addon-a11y',
 		'@storybook/addon-docs',
-		'@storybook/addon-mcp',
+		// MCP preset only runs in dev mode — skip during `storybook build`.
+		...(process.env.NODE_ENV === 'production'
+			? []
+			: ['./thockitty-mcp-preset/preset']),
 		'storybook-addon-pseudo-states',
 		'storybook-addon-tag-badges',
 	],

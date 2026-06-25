@@ -1,19 +1,19 @@
 ---
 name: ship-it
 description: >
-  Use this skill when the user is done with an implementation and wants to ship it — create a branch,
-  commit the changes, open a pull request, and optionally add the `ai-review` label. Trigger on phrases
-  like "ship it", "I'm done", "create a PR", "wrap this up", "push this", "open a PR for this",
-  "commit and PR", "done with this feature", or anything that signals the user wants to publish their
-  finished work. This skill handles the full git + GitHub workflow from staged changes through PR creation.
-  Always use this skill rather than doing the git steps ad-hoc.
+    Use this skill when the user is done with an implementation and wants to ship it — create a branch,
+    commit the changes, open a pull request, and optionally add the `ai-review` label. Trigger on phrases
+    like "ship it", "I'm done", "create a PR", "wrap this up", "push this", "open a PR for this",
+    "commit and PR", "done with this feature", or anything that signals the user wants to publish their
+    finished work. This skill handles the full git + GitHub workflow from staged changes through PR creation.
+    Always use this skill rather than doing the git steps ad-hoc.
 compatibility:
-  tools:
-    - Bash
-    - Read
-  cli:
-    - git
-    - gh  # GitHub CLI — https://cli.github.com — must be authenticated (`gh auth login`)
+    tools:
+        - Bash
+        - Read
+    cli:
+        - git
+        - gh # GitHub CLI — https://cli.github.com — must be authenticated (`gh auth login`)
 ---
 
 # Ship It
@@ -53,6 +53,7 @@ The goal: be able to answer "what is this change, and why does it exist?"
 Types: `feat`, `fix`, `chore`, `ci`, `docs`, `refactor`, `test`
 
 Examples:
+
 - `feat/button-component`
 - `fix/color-token-typo`
 - `chore/update-deps`
@@ -64,7 +65,7 @@ Examples:
 git checkout -b feat/your-branch-name
 ```
 
-Name the branch after the *substance* of the change, not the task ("feat/icon-size-tokens" not "feat/my-changes").
+Name the branch after the _substance_ of the change, not the task ("feat/icon-size-tokens" not "feat/my-changes").
 
 ---
 
@@ -77,11 +78,13 @@ Use [Conventional Commits](https://www.conventionalcommits.org):
 ```
 
 Examples:
+
 - `feat(tokens): add icon size scale`
 - `fix(button): correct hover state border color`
 - `chore: upgrade storybook to v8`
 
 **Rules:**
+
 - Lowercase, no period at the end
 - Keep the summary under 72 characters
 - If there are logically separate concerns in the changes, split into multiple commits

@@ -4,7 +4,7 @@ import { Button } from '../Button'
 const meta: Meta<typeof Button> = {
 	title: 'Components/Button',
 	component: Button,
-	tags: ['in-progress'],
+	tags: ['in-progress', 'manifest'],
 }
 
 export default meta
